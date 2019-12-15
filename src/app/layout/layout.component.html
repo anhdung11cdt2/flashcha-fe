@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="sidebar" id="mySidebar">
+    <button (click)="closeSidebar()" class="closebtn">
+      <a style="font-size: 36px;">&times;</a>
+    </button>
+    <a href="#">About</a>
+    <a href="#">How to use</a>
+    <a href="#">Developer</a>
+  </div>
+  <div class="navbar">
+    <button class="logo-btn" (click)="openSidebar()">
+      <img src="../../assets/logo.png" alt="HeyKanji">
+    </button>
+    <div *ngIf="afAuth.user | async as user; else login" ngbDropdown class="user d-inline-block">
+      <a ngbDropdownToggle type="button" id="dropdownBasic1">{{user.displayName}}</a>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Profile</button>
+        <button ngbDropdownItem (click)=auth.logout()>Logout</button>
+      </div>
+    </div>
+    <ng-template #login>
+      <button class="btn btn-light" type="button" (click)="auth.login()">Login</button>
+    </ng-template>
+  </div>
+  <div class="main">
+    <div class="ad-vertical">Advertise</div>
+    <ngb-tabset class="main-content" #tab="ngbTabset" justify="center" type="pills">
+      <ngb-tab title="Flashcard">
+        <ng-template ngbTabContent>
+          <app-flashcard></app-flashcard>
+          </ng-template>
+        </ngb-tab>
+      <ngb-tab title="Image regconize">
+        <ng-template ngbTabContent>
+          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
+          dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
+          iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="List">
+        <ng-template ngbTabContent>
+          <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Quick look">
+        <ng-template ngbTabContent>
+          <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+    <div class="ad-vertical">Advertise</div>
+  </div>
+</div>
