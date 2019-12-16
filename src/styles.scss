@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 .btn {
-    border-radius: 25px;
+  border-radius: 25px;
+}
+.g-word:hover {
+  cursor: pointer;
+  color: rgb(194, 120, 24) !important;
 }

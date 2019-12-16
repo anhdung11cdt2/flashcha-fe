@@ -1,6 +1,25 @@
 <div class="d-flex flex-rows">
     <div class="card">
-        
+        <div class="card-body">
+          <h5 class="card-title">耳から覚えるN1</h5>
+          <div *ngIf="!isLoad" class="card-text">
+            <div *ngFor="let list of [inArchive, archived]" class="list mb-2" [ngClass]="{archive: list[0].archive}">
+                <div class="item" *ngFor="let item of list; index as i" (click)="selectWord = item" [ngClass]="{select: selectWord == item}">
+                  <a class="text-bold pr-3">{{i+1}}</a>
+                  <a class="g-word">{{item.kanji}}</a>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    <div class="flashcard">
+      <a>{{findI(selectWord)+1}}/{{inArchive.length}}</a>
+      <div class="main-word d-flex justify-content-between">
+        <div class="btn back" (click)="selectBack()" (keyup.arrowleft)="selectBack()"><a>&#10094;</a></div>
+        <p>{{selectWord.kanji}}</p>
+        <div class="btn next" (click)="selectNext()" (keyup.arrowright)="selectNext()"><a>&#10095;</a></div>
+      </div>
+      <div class="explain pronun"><a>{{selectWord.romaji}}</a></div>
+      <div class="explain meaning"><a>{{selectWord.meaning}}</a></div>
     </div>
-    <div class="flashcard">Flash</div>
 </div>
