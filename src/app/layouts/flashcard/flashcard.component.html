@@ -1,25 +1,43 @@
-<div class="d-flex flex-rows">
-    <div class="card">
+<div class="frame g-word">
+    <div class="card g-hover-word">
         <div class="card-body">
           <h5 class="card-title">耳から覚えるN1</h5>
           <div *ngIf="!isLoad" class="card-text">
             <div *ngFor="let list of [inArchive, archived]" class="list mb-2" [ngClass]="{archive: list[0].archive}">
-                <div class="item" *ngFor="let item of list; index as i" (click)="selectWord = item" [ngClass]="{select: selectWord == item}">
+                <div class="item" *ngFor="let item of list; index as i" 
+                (click)="selectWord = item" 
+                [ngClass]="{select: selectWord == item}"
+                >
                   <a class="text-bold pr-3">{{i+1}}</a>
-                  <a class="g-word">{{item.kanji}}</a>
+                  <a>{{item.kanji}}</a>
                 </div>
             </div>
             </div>
         </div>
       </div>
-    <div class="flashcard">
+    <div class="flashcard g-word">
       <a>{{findI(selectWord)+1}}/{{inArchive.length}}</a>
-      <div class="main-word d-flex justify-content-between">
-        <div class="btn back" (click)="selectBack()" (keyup.arrowleft)="selectBack()"><a>&#10094;</a></div>
-        <p>{{selectWord.kanji}}</p>
-        <div class="btn next" (click)="selectNext()" (keyup.arrowright)="selectNext()"><a>&#10095;</a></div>
+      <div class="main-word g-hover-word">
+        <div class="btn back" (click)="selectBack()"><a>&#10094;</a></div>
+        <a>{{selectWord.kanji}}</a>
+        <div class="btn next" (click)="selectNext()"><a>&#10095;</a></div>
       </div>
-      <div class="explain pronun"><a>{{selectWord.romaji}}</a></div>
-      <div class="explain meaning"><a>{{selectWord.meaning}}</a></div>
+      <div *ngIf="showExplain" class="explain pronun"><a>{{selectWord.romaji}}</a></div>
+      <div *ngIf="showExplain" class="explain meaning"><a>{{selectWord.meaning}}</a></div>
+      <div class="tips g-word">
+        <a>Tips</a>
+        <span>
+          <i>&#10132;</i>
+          <a>to Back</a>
+        </span>
+        <span>
+          <i>Space</i>
+          <a>to show/hide explain</a>
+        </span>
+        <span>
+          <i>&#10132;</i>
+          <a>to Next</a>
+        </span>
+      </div>
     </div>
 </div>

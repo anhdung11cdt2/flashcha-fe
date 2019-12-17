@@ -1,3 +1,9 @@
+.frame {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
 .card {
   flex: 1;
   max-width: 188px;
@@ -18,7 +24,7 @@
         .item {
           padding: 0px 10px;
           &.select {
-            background: #e4e3e3;
+            background: #ceecff !important;
           }
           &:hover {
             cursor: pointer;
@@ -32,14 +38,20 @@
 .flashcard {
   flex: 10;
   > * {
-    width: 814px;
+    min-width: 814px;
     margin: 20px;
     text-align: center;
+    border-radius: 10px;
   }
   > .main-word {
     height: 241px;
     font-size: 100px;
     background: #f9f9f9;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     > .btn {
       height: 100%;
       width: 60px;
@@ -54,7 +66,7 @@
         opacity: 0.8;
       }
       &:hover > a {
-        color: #ffa929;
+        color: #ffa929 !important;
       }
       > a {
         font-size: 36px;
@@ -64,11 +76,40 @@
   }
   > .explain {
     min-height: 69px;
-    font-size: 26px;
-    
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background: #e1f8d4;
     &.pronun > a {
       font-size: 40px;
+    }
+  }
+  > .tips {
+    height: 61px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    opacity: 0.3;
+
+    background: #f7f7f7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    &:hover {
+      opacity: 0.8;
+    }
+    > span {
+      > * {
+        margin-left: 10px;
+      }
+      > i {
+        border: 2px solid rgb(88, 88, 88);
+        border-radius: 5px;
+        padding: 0px 5px;
+      }
     }
   }
 }

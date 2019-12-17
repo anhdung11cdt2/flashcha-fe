@@ -27,7 +27,7 @@
     <ngb-tabset class="main-content" #tab="ngbTabset" justify="center" type="pills">
       <ngb-tab title="Flashcard">
         <ng-template ngbTabContent>
-          <app-flashcard></app-flashcard>
+          <app-flashcard [data]= flashcard.data></app-flashcard>
           </ng-template>
         </ngb-tab>
       <ngb-tab title="Image regconize">

@@ -2,7 +2,13 @@
 .btn {
   border-radius: 25px;
 }
-.g-word:hover {
-  cursor: pointer;
-  color: rgb(194, 120, 24) !important;
+.g-hover-word a {
+  color: #4F4F4F;
+  &:hover {
+    cursor: pointer;
+    color: rgb(194, 120, 24) !important;
+  }
+}
+.g-word a {
+  color: #4F4F4F !important;
 }
