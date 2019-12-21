@@ -11,20 +11,29 @@
   height: 550px;
   > .card-body {
     padding: 5px;
+    > .card-title {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      .fas {
+        font-size: 15px;
+      }
+    }
     > .card-text {
-      height: 500px;
-      overflow-y: auto;
+      max-height: 450px;
+      overflow-y: scroll;
       > .list {
-        background: #fef0db;
+        // background: #fef0db;
         border-radius: 5px;
         padding: 10px 0px;
-        &.archive {
-          background: #e1f8d4;
-        }
+        // &.archive {}
         .item {
           padding: 0px 10px;
           &.select {
-            background: #ceecff !important;
+            background: #0d1f339e !important;
+            > a {
+              color: whitesmoke !important;
+            }
           }
           &:hover {
             cursor: pointer;
@@ -35,55 +44,27 @@
     }
   }
 }
+::ng-deep.process {
+  width: 50%;
+  .bg-success {
+    background-color: rgba($color: #51bcfa96, $alpha: 1.0) !important;
+  }
+}
 .flashcard {
-  flex: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   > * {
-    min-width: 814px;
-    margin: 20px;
+    margin: 10px 20px;
     text-align: center;
     border-radius: 10px;
   }
-  > .main-word {
-    height: 241px;
-    font-size: 100px;
+  .main-word {
     background: #f9f9f9;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    > .btn {
-      height: 100%;
-      width: 60px;
-      border-radius: 0;
-      background: #e0e0e0;
-      opacity: 0.5;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      &:hover {
-        opacity: 0.8;
-      }
-      &:hover > a {
-        color: #ffa929 !important;
-      }
-      > a {
-        font-size: 36px;
-        color: #c2c2c2;
-      }
-    }
-  }
-  > .explain {
-    min-height: 69px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: #e1f8d4;
-    &.pronun > a {
-      font-size: 40px;
+    a {
+      font-size: 30px !important;
     }
   }
   > .tips {
@@ -92,24 +73,64 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    opacity: 0.3;
-
-    background: #f7f7f7;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    &:hover {
-      opacity: 0.8;
-    }
-    > span {
-      > * {
-        margin-left: 10px;
-      }
-      > i {
-        border: 2px solid rgb(88, 88, 88);
-        border-radius: 5px;
-        padding: 0px 5px;
-      }
-    }
   }
+  .explain {
+    min-height: 69px;
+    font-size: 25px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    *:first-child a {
+      font-size: 20px;
+    }
+    a { font-size: 15px;}
+    * { padding: 10px;}
+  }
+}
+
+
+.flip-container {
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  display: block;
+  cursor: pointer;
+  width: 320px;
+  height: 320px;
+}
+
+.flip-card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+  z-index: 20;
+}
+
+.flip-card > div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flip-card .back {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+.flip-card.flip {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
 }

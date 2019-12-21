@@ -13,7 +13,7 @@ export class FlashcardComponent implements OnInit {
   archived: Kotoba[] = []
   isLoad = true;
   selectWord: Kotoba
-  showExplain = true;
+  flipped = false;
   constructor() {
   }
 
@@ -35,18 +35,22 @@ export class FlashcardComponent implements OnInit {
     let i = this.findI()
     if (this.inArchive[i - 1]) this.selectWord = this.inArchive[i - 1]
   }
-  findI() {
+  findI(selectWord?: string) {
     return this.inArchive.findIndex(e => e == this.selectWord)
   }
+  fLetter(s: string) {return s.slice(0,1).toUpperCase() + s.slice(1)}
+  
+  processRatio(){ return Math.round((this.findI()+1)*100/this.inArchive.length)}
 
   @HostListener('window:keydown', ['$event']) key(keyEvent: KeyboardEvent) {
     const k = keyEvent.code
+    keyEvent.preventDefault()
     if (k === 'ArrowRight') {
       this.selectNext()
     } else if (k === 'ArrowLeft') {
       this.selectBack()
     } else if (k === 'Space') {
-      this.showExplain = !this.showExplain
+      this.flipped = !this.flipped
     }
   }
 }

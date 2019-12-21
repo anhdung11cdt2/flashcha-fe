@@ -2,13 +2,64 @@
 .btn {
   border-radius: 25px;
 }
-.g-hover-word a {
-  color: #4F4F4F;
+.g-btn {
+  height: 100%;
+  width: 60px;
+  border-radius: 0;
+  background: #e0e0e0;
+  opacity: 0.5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:hover > * {
+    color: #ffa929 !important;
+  }
+  > * {
+    font-size: 30px;
+    color: #c2c2c2;
+  }
+}
+.g-shadow-btn {
+  opacity: 0.3;
+  background: #f7f7f7;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  &:focus, &:active {
+    outline: none !important;
+  }
+  &:hover, &:active {
+    opacity: 0.8;
+  }
+  &:active {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+.g-hover-word a,
+.g-hover-word i {
+  color: #4f4f4f;
   &:hover {
     cursor: pointer;
     color: rgb(194, 120, 24) !important;
   }
 }
 .g-word a {
-  color: #4F4F4F !important;
+  color: #4f4f4f !important;
+}
+.g-icon {
+  color: #4f4f4f !important;
+  font-size: 20px;
+}
+.g-border-icon {
+  border: 2px solid rgb(88, 88, 88) !important;
+  border-radius: 5px !important;
+  padding: 0px 5px !important;
+}
+.g-shadow {
+  box-shadow: 0px 0px 20px #c7c7c7;
 }
