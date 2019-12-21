@@ -15,6 +15,7 @@
       display: flex !important;
       align-items: center;
       justify-content: space-between;
+      margin: 0;
       .fas {
         font-size: 15px;
       }
@@ -23,10 +24,12 @@
       max-height: 450px;
       overflow-y: scroll;
       > .list {
-        // background: #fef0db;
         border-radius: 5px;
         padding: 10px 0px;
-        // &.archive {}
+        &.archive {
+          background-color: rgba(187, 230, 255, 0.3) !important;
+          opacity: 0.8;
+        }
         .item {
           padding: 0px 10px;
           &.select {
@@ -48,6 +51,7 @@
   width: 50%;
   .bg-success {
     background-color: rgba($color: #51bcfa96, $alpha: 1.0) !important;
+    border-radius: 5px !important;
   }
 }
 .flashcard {

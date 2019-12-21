@@ -7,15 +7,16 @@
   <div [ngbCollapse]='expand'>
     <div class="card g-hover-word">
       <div class="card-body">
-        <h5 class="card-title">
-          耳から覚えるN1
+        <div class="card-title">
+          <a>耳から覚えるN1</a>
           <button class="btn" (click)="expand = true">
             <i class="g-icon g-hover-word fas fa-chevron-left"></i>
           </button>
-        </h5>
+        </div>
+        <div class="g-word">Total: {{data.length}}</div>
         <div *ngIf="!isLoad" class="card-text">
-          <div *ngFor="let list of [inArchive, archived]" class="list mb-2" [ngClass]="{archive: list[0].archive}">
-            <div class="text-center border-bottom">{{list[0].archive ? 'Completed '+archived.length : 'New words '+ inArchive.length}}</div>
+          <div *ngFor="let list of [inArchive, archived]" class="list mb-2" [class.archive]="list[0].archive">
+            <div class="text-center border-bottom">{{list[0].archive ? 'Archived '+archived.length : 'New words '+ inArchive.length}}</div>
             <div class="item" *ngFor="let item of list; index as i" (click)="selectWord = item"
               [ngClass]="{'select': selectWord == item,'g-shadow': selectWord == item}">
               <a class="text-bold pr-3">{{i+1}}</a>
