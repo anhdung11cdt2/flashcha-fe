@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyAb0Vend933nwysqJhz2aseuAyxrtGMrwc",
-    authDomain: "haya-248bc.firebaseapp.com",
-    databaseURL: "https://haya-248bc.firebaseio.com",
-    projectId: "haya-248bc",
-    storageBucket: "haya-248bc.appspot.com",
-    messagingSenderId: "256582392993",
-    appId: "1:256582392993:web:dbca40fdee1ebdc5bce4e0",
-    measurementId: "G-JZVLD4SCSC"
+    apiKey: "AIzaSyBOEzcdtA8P896p606_NCi-Tx24yZ5VSjM",
+    authDomain: "flashcha-c9d4a.firebaseapp.com",
+    databaseURL: "https://flashcha-c9d4a.firebaseio.com",
+    projectId: "flashcha-c9d4a",
+    storageBucket: "flashcha-c9d4a.appspot.com",
+    messagingSenderId: "429478608778",
+    appId: "1:429478608778:web:7c51e27c42da351fc4d273",
+    measurementId: "G-YSEKF7WXN7"
   }
 };

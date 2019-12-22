@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Kotoba } from 'src/app/types/kotoba';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-flashcard',
@@ -14,6 +15,7 @@ export class FlashcardComponent implements OnInit {
   isLoad = true;
   selectWord: Kotoba
   flipped = false;
+  expand: boolean
   constructor() {
   }
 

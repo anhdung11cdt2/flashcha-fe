@@ -13,6 +13,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { AuthService } from './services/auth.service';
 import { DatePipe } from '@angular/common';
 import { FlashcardComponent } from './layouts/flashcard/flashcard.component';
+import { DragulaModule } from 'ng2-dragula';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { FlashcardComponent } from './layouts/flashcard/flashcard.component';
     NgbAccordionModule,
     NgbTabsetModule,
     NgbCollapseModule,
-    NgbProgressbarModule
+    NgbProgressbarModule,
+    DragulaModule.forRoot()
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]
