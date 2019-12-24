@@ -15,7 +15,6 @@
   width: 100%;
   > .main-content {
       flex:1;
-      padding: 0px 20px;
   }
 }
 .ad-vertical {
@@ -33,12 +32,13 @@
   border: none;
   > img {
     width: 150px;
+    border-radius: 20px;
   }
 }
 .sidebar {
   position: absolute;
   height: 100%;
-  z-index: 1;
+  z-index: 10;
   width: 0;
   left: 0;
   top: 0;

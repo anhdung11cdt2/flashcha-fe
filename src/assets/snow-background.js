@@ -2,10 +2,10 @@ snow = {
 	count: 60,
 	delay: 10,
 	flutter: 0.2,
-	wind: 1.0,
+	wind: 2,
 	w1: 1,
 	minSpeed: 0.3,
-	maxSpeed: 4,
+	maxSpeed: 2,
 	cv: null,
 	flakes: [],
 	toggle: function() {

@@ -9,7 +9,7 @@
   </div>
   <div class="navbar">
     <button class="logo-btn" (click)="openSidebar()">
-      <img src="../../assets/logo.png" alt="HeyKanji">
+      <img src="../../assets/logo.png" alt="flashcha">
     </button>
     <div *ngIf="afAuth.user | async as user; else login" ngbDropdown class="user d-inline-block">
       <a ngbDropdownToggle type="button" id="dropdownBasic1">{{user.displayName}}</a>

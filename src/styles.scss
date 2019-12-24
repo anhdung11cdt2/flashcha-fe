@@ -2,6 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 .btn {
   border-radius: 25px;
+  background-color: rgba($color: #ffffff, $alpha: 0.8);
 }
 .g-btn {
   height: 100%;
@@ -91,4 +92,11 @@
   opacity: 0.2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
+}
+.g-crystal-white {
+  background: rgba($color: #ffffff, $alpha: 0.8) !important;
+}
+canvas {
+  height: 100%;
+  width: 100%;
 }

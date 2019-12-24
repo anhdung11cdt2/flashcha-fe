@@ -1,18 +1,18 @@
 <div class="frame g-word">
-  <div *ngIf="expand" class="pt-2">
-    <button class="btn" (click)="expand = false">
-      <!-- <i class="g-icon g-hover-word fas fa-chevron-right"></i> -->
-      <a class="g-icon g-hover-word">➡️</a>
+  <div *ngIf="!expand" class="float-option">
+    <button class="btn" (click)="expand = !expand">
+      <i class="g-icon g-hover-word fas fa-chevron-right"></i>
+      <!-- <a class="g-icon g-hover-word">➡️</a> -->
     </button>
   </div>
-  <div [ngbCollapse]='expand'>
-    <div class="card g-hover-word">
+  <div [ngbCollapse]='!expand'>
+    <div class="card float-option g-crystal-white g-hover-word">
       <div class="card-body">
         <div class="card-title">
           <a>耳から覚えるN1</a>
-          <button class="btn" (click)="expand = true">
-            <!-- <i class="g-icon g-hover-word fas fa-chevron-left"></i> -->
-            <a class="g-icon g-hover-word">⬅️</a>
+          <button class="btn" (click)="expand = !expand">
+            <i class="g-icon g-hover-word fas fa-chevron-left"></i>
+            <!-- <a class="g-icon g-hover-word">⬅️</a> -->
           </button>
         </div>
         <div class="g-word">Total: {{data.length}}</div>
@@ -33,10 +33,10 @@
     <ngb-progressbar class="process" type="success" [value]="processRatio()" [animated]="true"><i>{{findI()+1}}/{{inArchive.length}}</i></ngb-progressbar>
     <div class="flip-container" dragular="flashcard" >
       <div id="flip-card" class="flip-card" [class.flip]="flipped" (click)="flipped = !flipped">
-        <div class="front main-word g-shadow" draggable="true">
+        <div class="front g-crystal-white main-word g-shadow" draggable="true">
           <a>{{selectWord.kanji}}</a>
         </div>
-        <div class="back explain g-shadow">
+        <div class="back g-crystal-white explain g-shadow">
           <div><a>{{selectWord.romaji}}</a></div>
           <div><a>{{fLetter(selectWord.meaning)}}</a></div>
           <div><a>青春は全力で生けないとはいけません</a></div>

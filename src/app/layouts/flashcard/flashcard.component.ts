@@ -16,7 +16,7 @@ export class FlashcardComponent implements OnInit, OnDestroy {
   isLoad = true;
   selectWord: Kotoba
   flipped = false;
-  expand: boolean
+  expand: boolean = false
   sub = new Subscription
   constructor(
     private dragular: DragulaService
@@ -34,8 +34,6 @@ export class FlashcardComponent implements OnInit, OnDestroy {
     })
     this.selectWord = this.inArchive[0]
     this.isLoad = false
-    console.log(this.inArchive);
-    console.log(this.archived);1
   }
   selectNext() {
     let i = this.findI()
