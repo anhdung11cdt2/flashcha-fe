@@ -46,7 +46,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/snow-background.js"
+            ]
           },
           "configurations": {
             "production": {

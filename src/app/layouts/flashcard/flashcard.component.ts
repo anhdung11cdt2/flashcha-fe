@@ -1,14 +1,15 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input, OnDestroy } from '@angular/core';
 import { Kotoba } from 'src/app/types/kotoba';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
 import { Subscription } from 'rxjs';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-flashcard',
   templateUrl: './flashcard.component.html',
   styleUrls: ['./flashcard.component.scss']
 })
-export class FlashcardComponent implements OnInit {
+export class FlashcardComponent implements OnInit, OnDestroy {
   @Input() data: Kotoba[]
   inArchive: Kotoba[] = []
   archived: Kotoba[] = []
@@ -16,9 +17,16 @@ export class FlashcardComponent implements OnInit {
   selectWord: Kotoba
   flipped = false;
   expand: boolean
-  constructor() {
+  sub = new Subscription
+  constructor(
+    private dragular: DragulaService
+  ) {
+    if (!this.dragular) this.dragular.createGroup('flashcard', null)
   }
-
+  ngOnDestroy(){ 
+    this.dragular.remove('flashcard')
+    this.dragular.cancel()
+  }
   ngOnInit() {
     this.data.map(d => {
       if (d.archive) this.archived.push(d)
@@ -27,7 +35,7 @@ export class FlashcardComponent implements OnInit {
     this.selectWord = this.inArchive[0]
     this.isLoad = false
     console.log(this.inArchive);
-    console.log(this.archived);
+    console.log(this.archived);1
   }
   selectNext() {
     let i = this.findI()
@@ -46,12 +54,14 @@ export class FlashcardComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event']) key(keyEvent: KeyboardEvent) {
     const k = keyEvent.code
-    keyEvent.preventDefault()
     if (k === 'ArrowRight') {
+      keyEvent.preventDefault()
       this.selectNext()
     } else if (k === 'ArrowLeft') {
+      keyEvent.preventDefault()
       this.selectBack()
     } else if (k === 'Space') {
+      keyEvent.preventDefault()
       this.flipped = !this.flipped
     }
   }
