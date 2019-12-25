@@ -156,6 +156,7 @@
 .flip-card .back {
   -webkit-transform: rotateX(180deg);
   transform: rotateX(180deg);
+  position: relative;
 }
 
 .flip-card.flip {
