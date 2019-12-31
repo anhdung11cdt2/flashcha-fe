@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import { FlashcardsService } from '../services/flashcards.service';
+declare const snow: any;
 
 @Component({
   selector: 'app-layout',
@@ -14,6 +15,13 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("***APP");
+    snow.count = 30;   // number of flakes
+    snow.delay = 20;   // timer interval
+    snow.minSpeed = 2; // minimum movement/time slice
+    snow.maxSpeed = 5; // maximum movement/time slice
+    snow.start();
+    console.log('snow falling');
   }
   openSidebar(){
     console.log('openSidebar');
