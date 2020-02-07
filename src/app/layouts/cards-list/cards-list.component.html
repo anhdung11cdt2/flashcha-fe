@@ -1,0 +1,24 @@
+<div class="card float-option g-crystal-white g-hover-word">
+  <div class="card-body">
+    <div class="card-title">
+      <a *ngIf="lesson">{{lesson.name}}</a>
+      <button class="btn" (click)="expand = !expand">
+        <i class="g-icon g-hover-word fas fa-chevron-left"></i>
+        <!-- <a class="g-icon g-hover-word">⬅️</a> -->
+      </button>
+    </div>
+    <div class="g-word"><a>Total: {{flashcards.length}}</a></div>
+    <div *ngIf="flashcards.length" class="card-text">
+      <div *ngFor="let list of [inArchive, archived]" class="list mb-2">
+        <div class="text-center border-bottom">
+          <!-- {{ inArchive.length && ? 'Archived '+archived.length : 'New words '+ inArchive.length}}</div> -->
+        <div class="item" draggable="true" *ngFor="let item of list; index as i" (click)="selectWord = item"
+          [ngClass]="{'select': selectWord == item,'g-shadow': selectWord == item}">
+          <a class="text-bold pr-3">{{i+1}}</a>
+          <a>{{item.kanji}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [class.archive]="!!list[0].archive" -->

@@ -14,14 +14,23 @@ import { AuthService } from './services/auth.service';
 import { DatePipe } from '@angular/common';
 import { FlashcardComponent } from './layouts/flashcard/flashcard.component';
 import { DragulaModule } from 'ng2-dragula';
+import { YourDeskComponent } from './layouts/your-desk/your-desk.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CardsListComponent } from './layouts/cards-list/cards-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    FlashcardComponent,],
+    FlashcardComponent,
+    YourDeskComponent,
+    CardsListComponent,
+  ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features

@@ -9,5 +9,10 @@ export const environment = {
     messagingSenderId: "429478608778",
     appId: "1:429478608778:web:7c51e27c42da351fc4d273",
     measurementId: "G-YSEKF7WXN7"
-  }
+  },
+  languages: 'http://68.183.182.232/languages',
+  levels: 'http://68.183.182.232/levels',
+  courses: 'http://68.183.182.232/courses',
+  lessons: 'http://68.183.182.232/lessons',
+  card_translations: 'http://68.183.182.232/card_translations'
 };

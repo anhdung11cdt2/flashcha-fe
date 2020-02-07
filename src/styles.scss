@@ -1,9 +1,9 @@
 
 /* You can add global styles to this file, and also import other style files */
-.btn {
-  border-radius: 25px;
-  background-color: rgba($color: #ffffff, $alpha: 0.8);
-}
+// .btn {
+//   border-radius: 25px;
+//   background-color: rgba($color: #ffffff, $alpha: 0.8);
+// }
 .g-btn {
   height: 100%;
   width: 60px;
@@ -100,4 +100,12 @@ canvas {
   height: 100%;
   width: 100%;
   z-index: -1 !important;
+}
+.list-group-item-action {
+  cursor: pointer;
+}
+.g-li {
+  &.g-active, &:hover {
+    background: #b7d0f5 !important;
+  }
 }

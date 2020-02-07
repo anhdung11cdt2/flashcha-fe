@@ -25,30 +25,26 @@
   <div class="main">
     <!-- <div class="ad-vertical">Advertise</div> -->
     <ngb-tabset class="main-content" #tab="ngbTabset" justify="center" type="pills">
-      <ngb-tab title="Flashcard">
+      <ngb-tab title="Your desk">
         <ng-template ngbTabContent>
-          <app-flashcard [data]= flashcard.data></app-flashcard>
-          </ng-template>
-        </ngb-tab>
-      <ngb-tab title="Image regconize">
-        <ng-template ngbTabContent>
-          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-          dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-          iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+          <app-your-desk></app-your-desk>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="List">
+      <ngb-tab title="Flashcard">
         <ng-template ngbTabContent>
-          <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+          <app-flashcard [data]=flashcard.data></app-flashcard>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Image regconize">
+        <ng-template ngbTabContent>
+          <p>This function will come soon!</p>
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Quick look">
         <ng-template ngbTabContent>
-          <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+          <p>This function will come soon!</p>
         </ng-template>
       </ngb-tab>
     </ngb-tabset>
-    <!-- <div class="ad-vertical">Advertise</div> -->
   </div>
 </div>
