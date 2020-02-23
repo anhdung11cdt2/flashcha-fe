@@ -1,0 +1,26 @@
+<div class="card">
+	<div class="card-title text-center">Import to {{lesson.name}}</div>
+	<div class="card-body">
+		<div class="d-flex flex-row justify-contents-between">
+			<input type="file" class="mr-4" (change)="onFileChange($event)" multiple="false"
+				aria-describedby="button-addon1" />
+			<button *ngIf="allowedData" class="btn btn-sm btn-outline-primary" (click)="importData()">Import all
+				cards</button>
+		</div>
+		<!-- <div id="gridctr"></div> -->
+		<table *ngIf="allowedData" class="table table-hover">
+			<thead>
+				<th></th>
+				<th *ngFor="let item of headersIndex | keyvalue" class="{{item.key}}">{{item.key || ''}}</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let row of allowedData; index as i">
+					<td>{{i+1}}</td>
+					<td class="{{item.key}}" *ngFor="let item of headersIndex | keyvalue">
+						{{row[item.key] || ''}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

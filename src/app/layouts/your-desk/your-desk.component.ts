@@ -12,6 +12,7 @@ import { Language } from 'src/app/_types/language';
 import { LanguagesService } from 'src/app/_services/languages.service';
 import { Level } from 'src/app/_types/level';
 import { LevelsService } from 'src/app/_services/levels.service';
+import { ToastService } from 'src/app/_services/toast.service';
 @Component({
   selector: 'app-your-desk',
   templateUrl: './your-desk.component.html',
@@ -33,7 +34,8 @@ export class YourDeskComponent implements OnInit {
     public languageSer: LanguagesService,
     public levelSer: LevelsService,
     public flashcardSer: FlashcardsService,
-    public modal: NgbModal
+    public modal: NgbModal,
+    public toast: ToastService,
     ) { }
   
   ngOnInit() {
@@ -76,6 +78,18 @@ export class YourDeskComponent implements OnInit {
         if (res && res.length) this.courses = res
       })
     }
+  }
+  deleteCourse(item: Course) {
+    console.log(item);
+    this.lessonSer.getData(item.id).pipe(rxo.switchMap((res: any[]) => {
+      console.log(res);
+      return res && res.length ? rxjs.of(false) : this.courseSer.deleteCourse(item.id)
+    }))
+    .subscribe((res:any) => {
+      console.log(res);
+      if (res && res.length) this.courses = res
+      else this.toast.err(null, 'Could not delete lessons')
+    }, err => this.toast.err(err))
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Flashcard } from 'src/app/_types/flashcard';
 import { Lesson } from 'src/app/_types/lesson';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SingleImportComponent } from '../single-import/single-import.component';
 
 @Component({
   selector: 'app-cards-list',
@@ -12,15 +14,21 @@ export class CardsListComponent implements OnInit {
   @Input()lesson: Lesson
   archived = []
   inArchive = []
-  constructor() { }
+  constructor(
+    public modalSer: NgbModal
+  ) { }
 
   ngOnInit() {
-    console.log(this.lesson);
-    console.log(this.flashcards);
-    
-    if (this.flashcards.length) {
+    if (this.flashcards && this.flashcards.length) {
       this.inArchive = this.flashcards.filter(f => f.word)
     }
   }
-
+  openImport() {
+    console.log(this.lesson);
+    let modal = this.modalSer.open(SingleImportComponent, {size: 'xl', backdrop: 'static', windowClass: 'import-modal'})
+    modal.componentInstance.lesson = this.lesson
+    modal.result.then(res => {
+      if (res.flashcards) this.flashcards = res.flashcards
+    })
+  }
 }

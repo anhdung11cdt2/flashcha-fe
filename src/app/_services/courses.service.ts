@@ -14,4 +14,8 @@ export class CoursesService {
   createNew(name: string, level_id: string, language_id: string) {
     return this.http.post(this.url, {name, level_id, language_id})
   }
+  deleteCourse(id: string) {
+    console.log(id);
+    return this.http.delete(this.url + '/' + id)
+  }
 }

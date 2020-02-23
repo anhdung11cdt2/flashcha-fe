@@ -14,4 +14,7 @@ export class FlashcardsService {
   getIndex(lessons: string[]) {
     return this.http.post(this.url + '/index', {lesson_ids: lessons})
   }
+  createCard() {
+    
+  }
 }

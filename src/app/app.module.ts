@@ -8,16 +8,19 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { NgbModule, NgbAccordionModule, NgbTabsetModule, NgbCollapseModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbAccordionModule, NgbTabsetModule, NgbCollapseModule, NgbProgressbarModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthService } from './services/auth.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 import { FlashcardComponent } from './layouts/flashcard/flashcard.component';
 import { DragulaModule } from 'ng2-dragula';
 import { YourDeskComponent } from './layouts/your-desk/your-desk.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardsListComponent } from './layouts/cards-list/cards-list.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { SingleImportComponent } from './layouts/single-import/single-import.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     FlashcardComponent,
     YourDeskComponent,
     CardsListComponent,
+    SingleImportComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,14 @@ import { FormsModule } from '@angular/forms';
     NgbTabsetModule,
     NgbCollapseModule,
     NgbProgressbarModule,
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+    NgbModalModule
+  ],
+  entryComponents: [
+    SingleImportComponent
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]

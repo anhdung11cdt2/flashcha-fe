@@ -43,7 +43,7 @@
     }
     > .card-text {
       max-height: 450px;
-      overflow-y: scroll;
+      overflow-y: auto;
       > .list {
         border-radius: 5px;
         padding: 10px 0px;
