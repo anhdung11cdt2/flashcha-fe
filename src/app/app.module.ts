@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SingleImportComponent } from './layouts/single-import/single-import.component';
+import { CreateLanguageComponent } from './layouts/create-language/create-language.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SingleImportComponent } from './layouts/single-import/single-import.com
     YourDeskComponent,
     CardsListComponent,
     SingleImportComponent,
+    CreateLanguageComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { SingleImportComponent } from './layouts/single-import/single-import.com
     NgbModalModule
   ],
   entryComponents: [
-    SingleImportComponent
+    SingleImportComponent,
+    CreateLanguageComponent
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]

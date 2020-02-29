@@ -7,7 +7,13 @@ type AOA = any[][];
 import * as canvasDatagrid from 'canvas-datagrid';
 import { FlashcardsService } from 'src/app/_services/flashcards.service';
 import { CardTranslatesService } from 'src/app/_services/card-translates.service';
-
+import { ToastService } from 'src/app/_services/toast.service';
+import { switchMap } from "rxjs/operators";
+import { of } from 'rxjs';
+import { LanguagesService } from 'src/app/_services/languages.service';
+import { Language } from 'src/app/_types/language';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateLanguageComponent } from '../create-language/create-language.component';
 @Component({
   selector: 'app-single-import',
   templateUrl: './single-import.component.html',
@@ -19,16 +25,28 @@ export class SingleImportComponent implements OnInit {
   allowedData: any[]
   flashcard: Flashcard[] = []
   card_translation: CardTranslation[] = []
-  allowHeaders = ['word', 'hiragana', 'sino', 'ipa', 'example', 'meaning_vi', 'sino_vi', 'ex_meaning']
+  card_headers = ['word', 'hiragana', 'sino', 'ipa', 'example']
+  cardTr_headers = ['meaning', 'sino_vi', 'ex_meaning']
+  getFirstKey(o) { return Object.keys(o).length ? Object.keys(o)[0] : null }
+  objectKeys(o) { return Object.keys(o).length ? Object.keys(o) : null }
+  allowHeaders = [...this.card_headers, ...this.cardTr_headers]
   headersIndex
+  langs: Language[]
+  selectedLang: Language
   constructor(
     private flashcardSer: FlashcardsService,
     private cardTransSer: CardTranslatesService,
-    ) { }
+    private langSer: LanguagesService,
+    private toast: ToastService,
+    private modal: NgbModal,
+  ) { }
 
   ngOnInit() {
     console.log(this.lesson);
-
+    this.langSer.getAll().subscribe((res: Language[]) => {
+      console.log(res)
+      this.langs = res
+    }, err => this.toast.err(err))
   }
   onFileChange(evt: any) {
     /* wire up file reader */
@@ -57,9 +75,9 @@ export class SingleImportComponent implements OnInit {
           return this.headersIndex[k] = i
         }
       })
-      
+
       this.data = this.data.filter(d => d.length)
-      this.data.splice(0,1)
+      this.data.splice(0, 1)
       this.allowedData = this.data.map(d => {
         let row = {}
         Object.keys(this.headersIndex).map(header_key => {
@@ -68,8 +86,7 @@ export class SingleImportComponent implements OnInit {
         // console.log(row);
         return row
       })
-      console.log(this.objectKeys(this.headersIndex));
-      
+
       // let grid_data = []
       // let keys = headersIndex
       // for (let row_i = 1; row_i < this.data.length; row_i++) {
@@ -79,7 +96,7 @@ export class SingleImportComponent implements OnInit {
       //   })
       //   grid_data.push(row)
       // }
-      
+
       //to create grid
       // var grid = canvasDatagrid({
       //   parentNode: document.getElementById('gridctr'),
@@ -90,18 +107,49 @@ export class SingleImportComponent implements OnInit {
     reader.readAsBinaryString(target.files[0]);
 
   }
-  getFirstKey(o) { return Object.keys(o).length ? Object.keys(o)[0] : null }
-  objectKeys(o) { return Object.keys(o).length ? Object.keys(o) : null }
   onGridChange(evt: Event) {
     console.log(evt);
   }
   importData() {
-    console.log(this.allowedData);
-    console.log(this.lesson);
-    for (let i = 1; i < this.allowedData.length; i++) {
-      const header = this.allowedData[i];
-      const element = this.allowedData[i];
-    }
-    // this.flashcardSer.
+    const cards = this.filterByHeaders(this.card_headers, this.allowedData)
+    const card_trs = this.filterByHeaders(this.cardTr_headers, this.allowedData)
+    console.log(cards);
+    console.log(card_trs);
+    console.log(this.selectedLang)
+    // this.cardTr_headers.map(h => h.includes('_vi'))
+    // if (cards.length) {
+    //   let body = { lesson_id: this.lesson.id, flashcards: cards }
+    //   console.log(body);
+    //   this.flashcardSer.createArrayFlashCards(body).pipe(switchMap((res: any) => {
+    //     const new_flashcards = res[this.lesson.id]
+    //     if (new_flashcards.length) {
+    //       let arr_cardTrs = []
+    //       new_flashcards.map(new_card => {
+    //         const word_i = this.allowedData.findIndex(d => d[new_card['word']])
+    //         if (word_i !== -1) {
+    //           arr_cardTrs.push(Object.assign(card_trs[word_i], {flash_card_id: new_card.id}))
+    //         }
+    //       })
+    //       const body = {language_id: 'vi', }
+    //       const req = this.cardTransSer.createArrayCardTrs({})
+    //       return 
+    //     } else return of(false)
+    //   })).subscribe()
+    // } else this.toast.warning('Emtpy data', 'Import')
+  }
+  filterByHeaders(headers, source) {
+    return source.map(row => {
+      let item = {}
+      headers.map(k => { if (row[k]) item[k] = row[k] })
+      return item
+    })
+  }
+  openCreateLanguageModal() {
+    const ref = this.modal.open(CreateLanguageComponent, {size: 'sm', backdrop: true})
+    ref.result.then(res => {
+      if (res.id) {
+        this.langs.push(res)
+      }
+    }, reject => {})
   }
 }

@@ -2,7 +2,7 @@ div#gridctr {
     max-height: 80vh;
     overflow-y: auto;
 }
-td:not(:first-child),th:not(:first-child) {
+td:not(:first-child) {
     max-width: 200px;
     overflow: auto;
 }

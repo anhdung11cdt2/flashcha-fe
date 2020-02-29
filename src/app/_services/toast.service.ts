@@ -15,4 +15,7 @@ export class ToastService {
     let status = err && err.status || ''
     this.toast.error(mess || null)
   }
+  warning(mess: string, title: string) {
+    title ? this.toast.warning(mess) : this.toast.warning(mess, title)
+  }
 }

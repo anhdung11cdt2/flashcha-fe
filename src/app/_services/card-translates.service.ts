@@ -13,4 +13,7 @@ export class CardTranslatesService {
   getAll() {
     return this.http.get(this.url)
   }
+  createArrayCardTrs(body: {language_id: string, card_translates: {}}) {
+    return this.http.post(this.url + '/array_create', body)
+  }
 }

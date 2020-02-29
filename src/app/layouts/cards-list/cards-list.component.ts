@@ -24,7 +24,6 @@ export class CardsListComponent implements OnInit {
     }
   }
   openImport() {
-    console.log(this.lesson);
     let modal = this.modalSer.open(SingleImportComponent, {size: 'xl', backdrop: 'static', windowClass: 'import-modal'})
     modal.componentInstance.lesson = this.lesson
     modal.result.then(res => {

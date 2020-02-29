@@ -11,13 +11,24 @@
 		<table *ngIf="allowedData" class="table table-hover">
 			<thead>
 				<th></th>
-				<th *ngFor="let item of headersIndex | keyvalue" class="{{item.key}}">{{item.key || ''}}</th>
+				<th *ngFor="let k of objectKeys(headersIndex)" class="{{k}}">
+					<a>{{k || ''}}</a>
+					<div *ngIf="k === 'meaning' && !!langs" ngbDropdown class="d-inline-block ml-2">
+						<button class="btn btn-sm" id="dropdown1" ngbDropdownToggle>Language</button>
+						<div ngbDropdownMenu aria-labelledby="dropdown1">
+							<button ngbDropdownItem *ngFor="let lang of langs"
+								(click)="selectedLang = lang">{{lang.name}}</button>
+							<!-- Add other languages -->
+							<button class="btn btn-sm" (click)="openCreateLanguageModal()">Add language</button>
+						</div>
+					</div>
+				</th>
 			</thead>
 			<tbody>
 				<tr *ngFor="let row of allowedData; index as i">
 					<td>{{i+1}}</td>
-					<td class="{{item.key}}" *ngFor="let item of headersIndex | keyvalue">
-						{{row[item.key] || ''}}
+					<td class="{{k}}" *ngFor="let k of objectKeys(headersIndex)">
+						{{row[k] || ''}}
 					</td>
 				</tr>
 			</tbody>

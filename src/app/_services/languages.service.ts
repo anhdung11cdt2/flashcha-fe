@@ -11,4 +11,7 @@ export class LanguagesService {
   getAll(){
     return this.http.get(this.url)
   }
+  create(body: {name:string, lang_code: string}) {
+    return this.http.post(this.url, body)
+  }
 }
