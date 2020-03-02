@@ -25,6 +25,8 @@
           opacity: 0.8;
         }
         .item {
+          display: flex;
+          justify-content: flex-start;
           padding: 0px 10px;
           &.select {
             background: #0d1f339e !important;

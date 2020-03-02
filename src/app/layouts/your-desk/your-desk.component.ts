@@ -13,6 +13,7 @@ import { LanguagesService } from 'src/app/_services/languages.service';
 import { Level } from 'src/app/_types/level';
 import { LevelsService } from 'src/app/_services/levels.service';
 import { ToastService } from 'src/app/_services/toast.service';
+import { CreateLanguageComponent } from '../create-language/create-language.component';
 @Component({
   selector: 'app-your-desk',
   templateUrl: './your-desk.component.html',
@@ -91,5 +92,12 @@ export class YourDeskComponent implements OnInit {
       else this.toast.err(null, 'Could not delete lessons')
     }, err => this.toast.err(err))
   }
-
+  openCreateLanguageModal() {
+    const ref = this.modal.open(CreateLanguageComponent, {size: 'sm', backdrop: true})
+    ref.result.then(res => {
+      if (res.id) {
+        this.languages.push(res)
+      }
+    }, reject => {})
+  }
 }

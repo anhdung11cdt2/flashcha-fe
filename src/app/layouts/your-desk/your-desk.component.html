@@ -6,7 +6,8 @@
          </div>
          <div class="card-body">
             <ul *ngIf="courses" class="list-group list-group-flush course-list">
-               <li *ngFor="let item of courses" class="g-li list-group-item list-group-item-action menu-relative dimmer-hover"
+               <li *ngFor="let item of courses"
+                  class="g-li list-group-item list-group-item-action menu-relative dimmer-hover"
                   [ngClass]="{'g-active': selectedCourse && item.id === selectedCourse.id}"
                   (click)="selectCourse(item)">
                   <span>
@@ -45,6 +46,9 @@
                         <div ngbDropdownMenu>
                            <button ngbDropdownItem *ngFor="let item of languages"
                               (click)="selectedLang = item">{{item.name}}</button>
+                           <!-- add new language -->
+                           <button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()">Add
+                              language</button>
                         </div>
                      </div>
                      <div ngbDropdown class="d-inline-block mb-2">

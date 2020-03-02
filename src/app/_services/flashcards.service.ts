@@ -15,7 +15,7 @@ export class FlashcardsService {
   getIndex(lessons: string[]) {
     return this.http.post(this.url + '/index', {lesson_ids: lessons})
   }
-  createArrayFlashCards(body: {lesson_id: string, flashcards: {}}) {
+  createArrayFlashCards(body: {lesson_id: string, flash_cards: {}}) {
     return this.http.post(this.url + '/array_create', body)
   }
 }

@@ -19,6 +19,8 @@ export class CardsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.flashcards);
+    
     if (this.flashcards && this.flashcards.length) {
       this.inArchive = this.flashcards.filter(f => f.word)
     }
@@ -28,6 +30,6 @@ export class CardsListComponent implements OnInit {
     modal.componentInstance.lesson = this.lesson
     modal.result.then(res => {
       if (res.flashcards) this.flashcards = res.flashcards
-    })
+    }, reject => {})
   }
 }

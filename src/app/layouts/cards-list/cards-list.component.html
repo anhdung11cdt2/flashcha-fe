@@ -12,7 +12,7 @@
         <div class="item" draggable="true" *ngFor="let item of list; index as i" (click)="selectWord = item"
           [ngClass]="{'select': selectWord == item,'g-shadow': selectWord == item}">
           <a class="text-bold pr-3">{{i+1}}</a>
-          <a>{{item.kanji}}</a>
+          <a>{{item.word}}</a>
         </div>
       </div>
     </div>

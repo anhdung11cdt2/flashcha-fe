@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-title text-center">Import to {{lesson.name}}</div>
 	<div class="card-body">
-		<div class="d-flex flex-row justify-contents-between">
+		<div class="d-flex flex-row justify-contents-between mb-2">
 			<input type="file" class="mr-4" (change)="onFileChange($event)" multiple="false"
 				aria-describedby="button-addon1" />
 			<button *ngIf="allowedData" class="btn btn-sm btn-outline-primary" (click)="importData()">Import all
@@ -14,19 +14,19 @@
 				<th *ngFor="let k of objectKeys(headersIndex)" class="{{k}}">
 					<a>{{k || ''}}</a>
 					<div *ngIf="k === 'meaning' && !!langs" ngbDropdown class="d-inline-block ml-2">
-						<button class="btn btn-sm" id="dropdown1" ngbDropdownToggle>Language</button>
+						<button class="btn btn-sm" id="dropdown1" ngbDropdownToggle>{{selectedLang ? selectedLang.name  : 'Choose language'}}</button>
 						<div ngbDropdownMenu aria-labelledby="dropdown1">
 							<button ngbDropdownItem *ngFor="let lang of langs"
 								(click)="selectedLang = lang">{{lang.name}}</button>
 							<!-- Add other languages -->
-							<button class="btn btn-sm" (click)="openCreateLanguageModal()">Add language</button>
+							<button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()">Add language</button>
 						</div>
 					</div>
 				</th>
 			</thead>
 			<tbody>
-				<tr *ngFor="let row of allowedData; index as i">
-					<td>{{i+1}}</td>
+				<tr *ngFor="let row of allowedData; index as i" [ngClass]="{'invalid': !!failedData.includes(i)}">
+					<td>{{i+1}} <i class="ml-1 text-danger" *ngIf="!!failedData.includes(i)">Invalid</i></td>
 					<td class="{{k}}" *ngFor="let k of objectKeys(headersIndex)">
 						{{row[k] || ''}}
 					</td>

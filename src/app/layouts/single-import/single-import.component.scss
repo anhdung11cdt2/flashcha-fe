@@ -1,8 +1,11 @@
 div#gridctr {
-    max-height: 80vh;
-    overflow-y: auto;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 td:not(:first-child) {
-    max-width: 200px;
-    overflow: auto;
+  max-width: 200px;
+  overflow: auto;
+}
+.invalid {
+    background: antiquewhite;
 }
