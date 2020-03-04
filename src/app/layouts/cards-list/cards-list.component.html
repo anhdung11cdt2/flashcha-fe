@@ -6,16 +6,16 @@
     </div>
     <div *ngIf="flashcards?.length" class="g-word"><a>Total: {{flashcards.length}}</a></div>
     <div *ngIf="flashcards?.length" class="card-text">
-      <div *ngFor="let list of [inArchive, archived]" class="list mb-2">
+      <div *ngFor="let list of [flashcards]; index as i" class="list mb-2">
         <div class="text-center border-bottom">
           <!-- {{ inArchive.length && ? 'Archived '+archived.length : 'New words '+ inArchive.length}}</div> -->
-        <div class="item" draggable="true" *ngFor="let item of list; index as i" (click)="selectWord = item"
-          [ngClass]="{'select': selectWord == item,'g-shadow': selectWord == item}">
-          <a class="text-bold pr-3">{{i+1}}</a>
-          <a>{{item.word}}</a>
+          <div class="item" draggable="true" *ngFor="let item of list; index as i" (click)="selectWord = item"
+            [ngClass]="{'select': selectWord == item,'g-shadow': selectWord == item, 'new': item.isNew}">
+            <a class="text-bold pr-3">{{i+1}}</a>
+            <a>{{item.word}}</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- [class.archive]="!!list[0].archive" -->
+  <!-- [class.archive]="!!list[0].archive" -->

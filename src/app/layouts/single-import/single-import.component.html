@@ -1,5 +1,7 @@
 <div class="card">
-	<div class="card-title text-center">Import to {{lesson.name}}</div>
+	<div class="card-title text-center">Import to {{lesson.name}}
+		<span class="g-hover close-btn" (click)="activeModal.close()">✖️</span>
+	</div>
 	<div class="card-body">
 		<div class="d-flex flex-row justify-contents-between mb-2">
 			<input type="file" class="mr-4" (change)="onFileChange($event)" multiple="false"

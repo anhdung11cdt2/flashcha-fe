@@ -112,3 +112,10 @@ canvas {
 .g-grey-text {
   color: rgba($color: #aaaaaa, $alpha: 1);
 }
+.g-hover {
+  opacity: 0.5;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}

@@ -62,8 +62,8 @@ export class YourDeskComponent implements OnInit {
       return this.flashcardSer.getIndex(lesson_ids)
     })).subscribe((res: any) => {
       this.flashcards = res
-      // console.log("**FLASHCARDS**");
-      // console.log(res);
+      console.log("**FLASHCARDS**");
+      console.log(res);
     })
   }
   selectLesson(lesson: Lesson) {

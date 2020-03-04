@@ -9,3 +9,7 @@ td:not(:first-child) {
 .invalid {
     background: antiquewhite;
 }
+.close-btn {
+  position: absolute;
+  right: 5px;
+}

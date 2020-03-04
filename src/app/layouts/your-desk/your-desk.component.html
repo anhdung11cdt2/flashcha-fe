@@ -77,7 +77,7 @@
          <div *ngIf="lessons && flashcards" class="card-body">
             <div class="scroll-list">
                <span *ngFor="let lesson of lessons">
-                  <app-cards-list *ngIf="lesson" [lesson]="lesson" [flashcards]="flashcards[lesson.id]">
+                  <app-cards-list *ngIf="lesson && flashcards[lesson.id]" [lesson]="lesson" [flashcards]="flashcards[lesson.id]">
                   </app-cards-list>
                </span>
             </div>
