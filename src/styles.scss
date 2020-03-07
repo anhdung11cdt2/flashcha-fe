@@ -44,7 +44,7 @@
 }
 .g-hover-word a,
 .g-hover-word i {
-  color: #4f4f4f;
+  color: #4f4f4f !important;
   &:hover {
     cursor: pointer;
     color: rgb(194, 120, 24) !important;

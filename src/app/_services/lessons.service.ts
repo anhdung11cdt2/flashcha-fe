@@ -14,4 +14,7 @@ export class LessonsService {
   getData(course_id: string) {
     return this.http.get(this.url+'?course_id='+course_id)
   }
+  createLesson(body: {name: string, course_id: string}) {
+    return this.http.post(this.url, body)
+  }
 }

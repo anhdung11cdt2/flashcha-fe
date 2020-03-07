@@ -16,7 +16,6 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
   }
   openSidebar(){
-    console.log('openSidebar');
     document.getElementById('mySidebar').style.width = '250px';
   }
   closeSidebar(){

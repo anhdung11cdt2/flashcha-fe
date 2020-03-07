@@ -14,6 +14,7 @@ import { Level } from 'src/app/_types/level';
 import { LevelsService } from 'src/app/_services/levels.service';
 import { ToastService } from 'src/app/_services/toast.service';
 import { CreateLanguageComponent } from '../create-language/create-language.component';
+
 @Component({
   selector: 'app-your-desk',
   templateUrl: './your-desk.component.html',
@@ -29,6 +30,7 @@ export class YourDeskComponent implements OnInit {
   languages: Language[]
   levels: Level[]
   expandCreate = false
+  new_lesson: string
   constructor(
     public courseSer: CoursesService,
     public lessonSer: LessonsService,
@@ -41,7 +43,6 @@ export class YourDeskComponent implements OnInit {
   
   ngOnInit() {
     this.courseSer.getAll().subscribe((res: any) => {
-      console.log(res);
       this.courses =  res
       if (this.courses[0]) this.selectCourse(this.courses[0])
     })
@@ -56,14 +57,11 @@ export class YourDeskComponent implements OnInit {
     this.selectedCourse = course
     this.lessonSer.getData(course.id).pipe(rxo.switchMap((res: any)=> {
       this.lessons = res
-      // console.log("Lessons");
-      // console.log(res);
+
       let lesson_ids = this.lessons.map(e => e.id)
       return this.flashcardSer.getIndex(lesson_ids)
     })).subscribe((res: any) => {
       this.flashcards = res
-      console.log("**FLASHCARDS**");
-      console.log(res);
     })
   }
   selectLesson(lesson: Lesson) {
@@ -71,23 +69,18 @@ export class YourDeskComponent implements OnInit {
     // this.flashcard.getData(lesson.id, 1, 50)
   }
   createCourse(name: string, level_id: string, language_id: string){
-    console.log(name, level_id, language_id);
     if (name && level_id && language_id) {
       this.courseSer.createNew(name, level_id, language_id).subscribe((res: any)=> {
-        console.log(res);
         this.expandCreate = false
         if (res && res.length) this.courses = res
       })
     }
   }
   deleteCourse(item: Course) {
-    console.log(item);
     this.lessonSer.getData(item.id).pipe(rxo.switchMap((res: any[]) => {
-      console.log(res);
       return res && res.length ? rxjs.of(false) : this.courseSer.deleteCourse(item.id)
     }))
     .subscribe((res:any) => {
-      console.log(res);
       if (res && res.length) this.courses = res
       else this.toast.err(null, 'Could not delete lessons')
     }, err => this.toast.err(err))
@@ -99,5 +92,11 @@ export class YourDeskComponent implements OnInit {
         this.languages.push(res)
       }
     }, reject => {})
+  }
+  createLesson(new_lesson: string) {
+    if (!new_lesson.length || !this.selectedCourse.id) return
+    this.lessonSer.createLesson({name: new_lesson, course_id: this.selectedCourse.id}).subscribe((res: Lesson) => {
+      this.lessons.push(res)
+    })
   }
 }

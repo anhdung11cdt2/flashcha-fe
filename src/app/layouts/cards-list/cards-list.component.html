@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="card-title">
       <a *ngIf="lesson">{{lesson.name}}</a>
-      <a class="g-icon g-hover-word" (click)="openImport()">➕</a>
+      <a class="g-icon g-hover" (click)="openImport()">➕</a>
     </div>
     <div *ngIf="flashcards?.length" class="g-word"><a>Total: {{flashcards.length}}</a></div>
     <div *ngIf="flashcards?.length" class="card-text">

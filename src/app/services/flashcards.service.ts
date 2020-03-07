@@ -6,7 +6,6 @@ function random(n: number){
   for(let i = 0;i< n; i++) {
     arr.push(Math.round(Math.random()*49))
   }
-  console.log(arr);
   return arr
 }
 @Injectable({

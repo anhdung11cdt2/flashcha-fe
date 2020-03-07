@@ -45,9 +45,7 @@ export class SingleImportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.lesson);
     this.langSer.getAll().subscribe((res: Language[]) => {
-      console.log(res)
       this.langs = res
     }, err => this.toast.err(err))
   }
@@ -108,12 +106,8 @@ export class SingleImportComponent implements OnInit {
 
     // ------ Start Import --------
     let body = { lesson_id: this.lesson.id, flash_cards: cards }
-    console.log(body);
     this.flashcardSer.createArrayFlashCards(body).pipe(switchMap((res: any) => {
       this.new_flashcards = res[this.lesson.id]
-      console.log('NEW FLASHCARDS');
-      console.log(this.new_flashcards);
-
       if (this.new_flashcards && this.new_flashcards.length) {
         let arr_cardTrs = []
         this.new_flashcards.map(new_card => {
@@ -122,17 +116,13 @@ export class SingleImportComponent implements OnInit {
             arr_cardTrs.push(Object.assign(card_trs[word_i], { flash_card_id: new_card.id }))
           }
         })
-        console.log(arr_cardTrs);
         if (arr_cardTrs.length) {
           const body = { language_id: this.selectedLang.id, card_translates: arr_cardTrs }
-          console.log(body);
           return this.cardTransSer.createArrayCardTrs(body)
         } else { this.toast.err('Meaning is empty'); return of(false) }
       } else { this.toast.err('Empty results'); return of(false) }
     })).subscribe((res: CardTranslation[]) => {
       if (res && res.length) {
-        console.log('FLASHCARDS_TRANSLATION');
-        console.log(res);
         this.toast.success('Imported ' + res.length + ' cards')
         this.activeModal.close({ flashcards: this.new_flashcards })
       }
