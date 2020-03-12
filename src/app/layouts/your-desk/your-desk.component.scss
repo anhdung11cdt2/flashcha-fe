@@ -30,6 +30,7 @@
 }
 .card-title {
   margin-top: 10px;
+  position: relative;
   > * {
     text-align: center;
   }
@@ -80,4 +81,8 @@
   .dimmer-icon {
     opacity: 0.9;
   }
+}
+.new-lesson {
+  position: absolute;
+  top: -3px;
 }
