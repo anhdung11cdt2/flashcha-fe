@@ -1,8 +1,9 @@
 <div class="card float-option g-crystal-white g-hover-word">
   <div class="card-body">
     <div class="card-title">
-      <a *ngIf="lesson">{{lesson.name}}</a>
-      <a class="g-icon g-hover" (click)="openImport()">➕</a>
+      <a *ngIf="lesson" class="text-truncate" placement="bottom-left" ngbPopover="{{lesson && lesson.name && lesson.name.length > 10 ? lesson.name : ''}}" triggers="mouseenter:mouseleave">{{lesson.name}}</a>
+      <a class="g-icon g-hover" (click)="openImport()" >➕</a>
+      <a class="g-icon g-hover" (click)="deleteLesson(lesson.id)"><i class="fas fa-trash"></i></a>
     </div>
     <div *ngIf="flashcards?.length" class="g-word"><a>Total: {{flashcards.length}}</a></div>
     <div *ngIf="flashcards?.length" class="card-text">

@@ -17,4 +17,7 @@ export class LessonsService {
   createLesson(body: {name: string, course_id: string}) {
     return this.http.post(this.url, body)
   }
+  deleteLesson(id: string) {
+    return this.http.delete(this.url + '/' + id)
+  }
 }

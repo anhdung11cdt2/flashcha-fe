@@ -24,7 +24,7 @@ export class YourDeskComponent implements OnInit {
   courses: Course[]
   lessons: Lesson[]
   flashcards: [Flashcard[]]
-  
+
   selectedCourse: Course
   selectedLesson: Lesson
   languages: Language[]
@@ -39,64 +39,70 @@ export class YourDeskComponent implements OnInit {
     public flashcardSer: FlashcardsService,
     public modal: NgbModal,
     public toast: ToastService,
-    ) { }
-  
+  ) { }
+
   ngOnInit() {
-    this.courseSer.getAll().subscribe((res: any) => {
-      this.courses =  res
+    let sub1 = this.courseSer.getAll().subscribe((res: any) => {
+      this.courses = res
       if (this.courses[0]) this.selectCourse(this.courses[0])
+      sub1.unsubscribe()
     })
-    this.languageSer.getAll().subscribe((res: any) => {
+    let sub2 = this.languageSer.getAll().subscribe((res: any) => {
       this.languages = res
+      sub2.unsubscribe()
     })
-    this.levelSer.getAll().subscribe((res: any) => {
+    let sub3 = this.levelSer.getAll().subscribe((res: any) => {
       this.levels = res
+      sub3.unsubscribe()
     })
   }
   selectCourse(course: Course) {
     this.selectedCourse = course
-    this.lessonSer.getData(course.id).pipe(rxo.switchMap((res: any)=> {
+    let sub = this.lessonSer.getData(course.id).pipe(rxo.switchMap((res: any) => {
       this.lessons = res
-
       let lesson_ids = this.lessons.map(e => e.id)
       return this.flashcardSer.getIndex(lesson_ids)
     })).subscribe((res: any) => {
       this.flashcards = res
+      sub.unsubscribe()
     })
   }
   selectLesson(lesson: Lesson) {
     this.selectedLesson = lesson
     // this.flashcard.getData(lesson.id, 1, 50)
   }
-  createCourse(name: string, level_id: string, language_id: string){
+  createCourse(name: string, level_id: string, language_id: string) {
     if (name && level_id && language_id) {
-      this.courseSer.createNew(name, level_id, language_id).subscribe((res: any)=> {
+      let sub = this.courseSer.createNew(name, level_id, language_id).subscribe((res: any) => {
         this.expandCreate = false
         if (res && res.length) this.courses = res
+        sub.unsubscribe()
       })
     }
   }
   deleteCourse(item: Course) {
-    this.lessonSer.getData(item.id).pipe(rxo.switchMap((res: any[]) => {
-      return res && res.length ? rxjs.of(false) : this.courseSer.deleteCourse(item.id)
-    }))
-    .subscribe((res:any) => {
-      if (res && res.length) this.courses = res
-      else this.toast.err(null, 'Could not delete lessons')
+    let sub = this.courseSer.deleteCourse(item.id).subscribe((res: any) => {
+      this.courses = res
+      if (this.courses.length) this.selectCourse(this.courses[this.courses.length - 1])
+      sub.unsubscribe()
     }, err => this.toast.err(err))
   }
   openCreateLanguageModal() {
-    const ref = this.modal.open(CreateLanguageComponent, {size: 'sm', backdrop: true})
+    const ref = this.modal.open(CreateLanguageComponent, { size: 'sm', backdrop: true })
     ref.result.then(res => {
       if (res.id) {
         this.languages.push(res)
       }
-    }, reject => {})
+    }, reject => { })
   }
   createLesson(new_lesson: string) {
     if (!new_lesson.length || !this.selectedCourse.id) return
-    this.lessonSer.createLesson({name: new_lesson, course_id: this.selectedCourse.id}).subscribe((res: Lesson) => {
+    let sub = this.lessonSer.createLesson({ name: new_lesson, course_id: this.selectedCourse.id }).subscribe((res: Lesson) => {
       this.lessons.push(res)
+      sub.unsubscribe()
     })
+  }
+  onActions(e: any) {
+    if (e && e.action === 'delete' && e.id) this.lessons = this.lessons.filter(lesson => lesson.id !== e.id)
   }
 }

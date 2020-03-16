@@ -8,7 +8,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { NgbModule, NgbAccordionModule, NgbTabsetModule, NgbCollapseModule, NgbProgressbarModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbAccordionModule, NgbTabsetModule, NgbCollapseModule, NgbProgressbarModule, NgbModalModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthService } from './services/auth.service';
 import { DatePipe, CommonModule } from '@angular/common';
@@ -47,6 +47,7 @@ import { CreateLanguageComponent } from './layouts/create-language/create-langua
     NgbTabsetModule,
     NgbCollapseModule,
     NgbProgressbarModule,
+    NgbPopoverModule,
     DragulaModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule, // required animations module
