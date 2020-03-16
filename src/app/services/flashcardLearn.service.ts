@@ -11,7 +11,7 @@ function random(n: number){
 @Injectable({
   providedIn: 'root'
 })
-export class FlashcardsService {
+export class FlashcardLearnService {
   rawData: any[] = n1kotoba
   data: any[] = []
   constructor() {

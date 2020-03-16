@@ -41,7 +41,7 @@ export class SingleImportComponent implements OnInit {
     private langSer: LanguagesService,
     private toast: ToastService,
     private modal: NgbModal,
-    private activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal
   ) { }
 
   ngOnInit() {

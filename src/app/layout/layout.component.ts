@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
-import { FlashcardsService } from '../services/flashcards.service';
+import { FlashcardLearnService } from '../services/flashcardLearn.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +9,7 @@ import { FlashcardsService } from '../services/flashcards.service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  constructor(public afAuth: AngularFireAuth, public auth: AuthService, public flashcard: FlashcardsService) {
+  constructor(public afAuth: AngularFireAuth, public auth: AuthService, public flashcard: FlashcardLearnService) {
     this.afAuth.authState
   }
 

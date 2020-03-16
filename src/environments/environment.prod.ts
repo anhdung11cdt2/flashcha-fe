@@ -1,3 +1,5 @@
+const flashcha = 'http://68.183.182.232'
+const end_point = flashcha
 export const environment = {
   production: true,
   firebase: {
@@ -10,9 +12,10 @@ export const environment = {
     appId: "1:429478608778:web:7c51e27c42da351fc4d273",
     measurementId: "G-YSEKF7WXN7"
   },
-  languages: 'http://68.183.182.232/languages',
-  levels: 'http://68.183.182.232/levels',
-  courses: 'http://68.183.182.232/courses',
-  lessons: 'http://68.183.182.232/lessons',
-  card_translations: 'http://68.183.182.232/card_translations'
+  languages: end_point + '/languages',
+  levels: end_point + '/levels',
+  courses: end_point + '/courses',
+  lessons: end_point + '/lessons',
+  flash_cards: end_point + '/flash_cards',
+  card_translations: end_point + '/card_translations'
 };

@@ -10,7 +10,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { NgbModule, NgbAccordionModule, NgbTabsetModule, NgbCollapseModule, NgbProgressbarModule, NgbModalModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
-import { AuthService } from './services/auth.service';
+// import { AuthService } from './services/auth.service.bak';
 import { DatePipe, CommonModule } from '@angular/common';
 import { FlashcardComponent } from './layouts/flashcard/flashcard.component';
 import { DragulaModule } from 'ng2-dragula';
@@ -58,7 +58,7 @@ import { CreateLanguageComponent } from './layouts/create-language/create-langua
     SingleImportComponent,
     CreateLanguageComponent
   ],
-  providers: [AuthService, DatePipe],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

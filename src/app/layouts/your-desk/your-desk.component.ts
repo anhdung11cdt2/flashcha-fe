@@ -24,6 +24,10 @@ export class YourDeskComponent implements OnInit {
   courses: Course[]
   lessons: Lesson[]
   flashcards: [Flashcard[]]
+  
+  selectedLang: Language
+  course_name: string
+  selectedLevel: Level
 
   selectedCourse: Course
   selectedLesson: Lesson

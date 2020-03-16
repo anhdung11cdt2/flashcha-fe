@@ -16,6 +16,7 @@ export class CardsListComponent implements OnInit {
   @Output()actions = new EventEmitter<{}>()
   archived = []
   inArchive = []
+  selectWord: Flashcard
   constructor(
     public modalSer: NgbModal,
     private lessonSer: LessonsService,

@@ -1,7 +1,6 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const flashcha = 'http://68.183.182.232'
 const local = 'http://127.0.0.1:3000'
 const end_point = local
 export const environment = {

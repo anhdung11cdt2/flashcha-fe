@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input, OnDestroy } from '@angular/core';
 import { Kotoba } from 'src/app/types/kotoba';
-import { FlashcardsService } from 'src/app/services/flashcards.service';
+import { FlashcardLearnService } from 'src/app/services/flashcardLearn.service';
 import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
 
