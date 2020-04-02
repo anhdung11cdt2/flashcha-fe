@@ -50,7 +50,7 @@ export class YourDeskComponent implements OnInit {
       this.courses = res
       if (this.courses[0]) this.selectCourse(this.courses[0])
       sub1.unsubscribe()
-    })
+    }, err => { this.toast.err(err)})
     let sub2 = this.languageSer.getAll().subscribe((res: any) => {
       this.languages = res
       sub2.unsubscribe()
@@ -69,7 +69,7 @@ export class YourDeskComponent implements OnInit {
     })).subscribe((res: any) => {
       this.flashcards = res
       sub.unsubscribe()
-    })
+    }, err => { this.toast.err(err)})
   }
   selectLesson(lesson: Lesson) {
     this.selectedLesson = lesson
@@ -81,7 +81,7 @@ export class YourDeskComponent implements OnInit {
         this.expandCreate = false
         if (res && res.length) this.courses = res
         sub.unsubscribe()
-      })
+      }, err => { this.toast.err(err)})
     }
   }
   deleteCourse(item: Course) {
@@ -104,7 +104,7 @@ export class YourDeskComponent implements OnInit {
     let sub = this.lessonSer.createLesson({ name: new_lesson, course_id: this.selectedCourse.id }).subscribe((res: Lesson) => {
       this.lessons.push(res)
       sub.unsubscribe()
-    })
+    }, err => { this.toast.err(err)})
   }
   onActions(e: any) {
     if (e && e.action === 'delete' && e.id) this.lessons = this.lessons.filter(lesson => lesson.id !== e.id)

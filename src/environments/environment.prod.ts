@@ -1,4 +1,5 @@
-const flashcha = 'http://68.183.182.232'
+// const flashcha = 'http://68.183.182.232'
+const flashcha = 'https://www.api-flashcha.com'
 const end_point = flashcha
 export const environment = {
   production: true,

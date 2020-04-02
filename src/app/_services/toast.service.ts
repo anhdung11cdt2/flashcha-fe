@@ -16,7 +16,10 @@ export class ToastService {
     if (mess) { this.toast.error(mess); return }
     if (err && err.status) {
       this.toast.error(err.status + ' ' + err.statusText); console.log(err);
-    } else this.toast.error('Error! Somethings went wrong!')
+    // } else if (err && Object.keys(err).length) {
+    //   let err_content = Object.values(err).reduce((str: string, val) => str += val.toString())
+    //   this.toast.error(err_content.toString())
+    } else this.toast.error('Sorry! Somethings went wrong!')
   }
   warning(mess: string, title: string) {
     title ? this.toast.warning(mess) : this.toast.warning(mess, title)
