@@ -163,3 +163,14 @@
   transform: rotateX(180deg);
   -webkit-transform: rotateX(180deg);
 }
+.lesson-tree {
+  // a::before {
+  //   content: "\25B6";
+  //   color: 364658;
+  //   display: inline-block;
+  //   margin-right: 6px;
+  // }
+  * {
+    margin-right: 6px;
+  }
+}

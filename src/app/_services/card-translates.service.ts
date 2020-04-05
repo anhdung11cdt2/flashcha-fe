@@ -9,11 +9,14 @@ export class CardTranslatesService {
   url = environment.card_translations
   constructor(
     private http: HttpClient
-    ) { }
+  ) { }
   getAll() {
     return this.http.get(this.url)
   }
-  createArrayCardTrs(body: {language_id: string, card_translates: {}}) {
+  getTranslations(flashcard_ids: string[]) {
+    return this.http.post(this.url + '/index', { flashcard_ids })
+  }
+  createArrayCardTrs(body: { language_id: string, card_translates: {} }) {
     return this.http.post(this.url + '/array_create', body)
   }
 }

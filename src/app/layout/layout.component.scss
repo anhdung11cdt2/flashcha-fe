@@ -14,15 +14,15 @@
   top: 60px;
   width: 100%;
   > .main-content {
-      flex:1;
+    flex: 1;
   }
 }
 .ad-vertical {
   position: relative;
   top: 25px;
-  width: 120px ;
-  height: 600px ;
-  background: #fedc9d ;
+  width: 120px;
+  height: 600px;
+  background: #fedc9d;
 }
 .logo-btn {
   position: absolute;
@@ -47,11 +47,14 @@
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
+  > a {
+    cursor: pointer;
+  }
 }
 .sidebar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 20px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
   color: #adb5bd;
   display: block;
   transition: 0.3s;
@@ -65,7 +68,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 36px;
+  font-size: 30px;
   margin-left: 170px;
   > a {
     padding: 0px 20px;
@@ -94,12 +97,42 @@ div.user {
   padding: 5px 5px;
   margin: 0px 5px;
   &:hover {
-    color: #0d1f33;
+    color: #fcfcfc;
   }
 }
-::ng-deep.nav-pills .nav-link.active {
-  color: #0d1f33;
-  border-bottom: 3px solid #0d1f33;
-  border-radius: 0;
-  background: none;
+::ng-deep.nav-pills {
+  max-width: 500px;
+  overflow: hidden;
+  .nav-link.active {
+    color: #fcfcfc;
+    border-bottom: 1px solid #fcfcfc;
+    border-radius: 0;
+    background: none;
+  }
+}
+@media (max-width: 900px) {
+  ::ng-deep.nav-pills * {
+    display: none;
+    // color: #adb5bd;
+    // font-size: 16px;
+    // padding: 5px 5px;
+    // margin: 0px 5px;
+    // &:hover {
+    //   color: #0d1f33;
+    // }
+  }
+  // ::ng-deep.nav-pills .nav-link.active {
+  //   color: #0d1f33;
+  //   border-bottom: 1px solid #0d1f33;
+  //   border-radius: 0;
+  //   background: none;
+  // }
+}
+@media (min-width: 900px) {
+  ::ng-deep.nav-pills {
+    position: absolute;
+    top: -55px;
+    left: 40%;
+    width: fit-content;
+  }
 }

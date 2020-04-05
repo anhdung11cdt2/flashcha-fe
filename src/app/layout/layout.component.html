@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <div class="sidebar" id="mySidebar">
     <button (click)="closeSidebar()" class="closebtn">
-      <a style="font-size: 36px;">&times;</a>
+      <a style="font-size: 30px;">&times;</a>
     </button>
-    <a href="#">About</a>
-    <a href="#">How to use</a>
-    <a href="#">Developer</a>
+    <a (click)="tab.select('flashcard'); closeSidebar()">Flashcard</a>ž
+    <a (click)="tab.select('desk'); closeSidebar()">Your desk</a>
+    <!-- <a >Image regconize</a> -->
+    <!-- <a >Quick look</a> -->
   </div>
   <div class="navbar">
     <button class="logo-btn" (click)="openSidebar()">
@@ -25,26 +26,26 @@
   <div class="main">
     <!-- <div class="ad-vertical">Advertise</div> -->
     <ngb-tabset class="main-content" #tab="ngbTabset" justify="center" type="pills">
-      <ngb-tab title="Your desk">
-        <ng-template ngbTabContent>
-          <app-your-desk></app-your-desk>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Flashcard">
+      <ngb-tab title="Flashcard" id="flashcard">
         <ng-template ngbTabContent>
           <app-flashcard [data]=flashcard.data></app-flashcard>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Image regconize">
+      <ngb-tab title="Your desk" id="desk">
+        <ng-template ngbTabContent>
+          <app-your-desk></app-your-desk>
+        </ng-template>
+      </ngb-tab>
+      <!-- <ngb-tab title="Image regconize" id="image">
         <ng-template ngbTabContent>
           <p>This function will come soon!</p>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Quick look">
+      <ngb-tab title="Quick look" id="quicklook">
         <ng-template ngbTabContent>
           <p>This function will come soon!</p>
         </ng-template>
-      </ngb-tab>
+      </ngb-tab> -->
     </ngb-tabset>
   </div>
 </div>
