@@ -1,11 +1,11 @@
-<div class="frame">
+<div class="d-flex flex-lg-row flex-md-row flex-sm-column">
    <div class="frame1">
       <div class="card">
          <div class="card-title">
             <h6>Courses</h6>
          </div>
          <div class="card-body">
-            <ul *ngIf="courses" class="list-group list-group-flush course-list">
+            <ul *ngIf="courses" class="list-group list-group-flush d-flex flex-sm-row flex-md-column flex-lg-column">
                <li *ngFor="let item of courses"
                   class="g-li list-group-item list-group-item-action menu-relative dimmer-hover"
                   [ngClass]="{'g-active': selectedCourse && item.id === selectedCourse.id}"
@@ -62,8 +62,8 @@
                            </div>
                         </div>
                      </div>
-                     <button class="btn btn-sm submit-btn w-100" [disabled]="!(course_name && selectedLevel && selectedLang)"
-                        type="button"
+                     <button class="btn btn-sm submit-btn w-100"
+                        [disabled]="!(course_name && selectedLevel && selectedLang)" type="button"
                         (click)="createCourse(course_name, selectedLevel.id, selectedLang.id)"><a>Create</a></button>
                   </div>
                </ng-container>

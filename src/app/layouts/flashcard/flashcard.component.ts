@@ -57,11 +57,13 @@ export class FlashcardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let sub = this.courseSer.getAll().pipe(switchMap((res: Course[]) => {
       this.courses = res
-      this.selectCourse = this.selectLesson ? this.courses.find(course => course.id === this.selectLesson.course_id) : this.courses[0]
+      const selectCourseId = localStorage.getItem('selectCourseId')
+      this.selectCourse = selectCourseId ? this.courses.find(course => course.id === selectCourseId) : this.courses[0]
       return this.lessonSer.getData(this.selectCourse.id)
     })).subscribe((res: Lesson[]) => {
       this.lessons = res
-      this.selectLesson = this.selectLesson || this.lessons[0]
+      const selectLessonId = localStorage.getItem('selectLessonId')
+      this.selectLesson = selectLessonId ? this.lessons.find(lesson => lesson.id === selectLessonId ) : this.lessons[0]
       this.loadFlashCards(this.selectLesson.id)
       sub.unsubscribe()
 
@@ -73,13 +75,19 @@ export class FlashcardComponent implements OnInit, OnDestroy {
     this.selectWord = this.inArchive[0]
     this.isLoad = false
   }
-  clickCourse(course: Course) {
+  onSelectCourse(course: Course) {
     this.selectCourse = course
+    localStorage.setItem('selectCourseId', this.selectCourse.id)
     this.lessonSer.getData(this.selectCourse.id).subscribe((lessons: Lesson[]) => {
       this.lessons = lessons
       this.selectLesson = this.lessons[0]
       this.loadFlashCards(this.selectLesson.id)
     }, err => this.toast.err(err))
+  }
+  onSelectLesson(lesson: Lesson) {
+    if (!lesson.id) return
+    this.selectLesson = lesson; this.loadFlashCards(lesson.id)
+    localStorage.setItem('selectLessonId', this.selectLesson.id)
   }
   loadFlashCards(lesson_id: string) {
     let sub = this.flashcardSer.getIndex([lesson_id]).pipe(switchMap((res: any) => {

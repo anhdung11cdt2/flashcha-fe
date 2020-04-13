@@ -1,32 +1,17 @@
-.frame {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 .frame1 {
   flex: 1;
-  @media (max-width: 400px) {
-    display: none;
-  }
-  display: flex;
   height: 550px;
   margin: 10px 5px 10px 10px;
-  > * {
-    width: 200px;
-  }
 }
 .frame2 {
   flex: 8;
   margin: 10px 5px 10px 10px;
-  width: calc(90vw - 200px);
   height: 550px;
 }
 .card-body {
   padding: 10px;
   height: 72vh;
   background: antiquewhite;
-  display: flex;
-  flex-direction: column;
 }
 .card-title {
   margin-top: 10px;
@@ -44,12 +29,6 @@
   > * {
     margin: 0px 10px;
   }
-}
-.course-list {
-  display: flex;
-  flex-direction: column;
-  overflow-x: auto;
-  width: 100%;
 }
 .hide {
   display: none;
