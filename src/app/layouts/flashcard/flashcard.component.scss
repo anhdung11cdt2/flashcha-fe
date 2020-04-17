@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
 }
-@media (max-width: 400px) {
+@media (max-width: 540px) {
   .frame {
     flex-direction: column;
     &:first-child {
@@ -94,9 +94,10 @@
   }
   > .tips {
     height: 61px;
+    width: 320px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
   }
   .explain {

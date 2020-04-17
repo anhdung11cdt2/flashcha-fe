@@ -34,14 +34,14 @@
       <div ngbDropdown class="d-inline-block g-link">
         <a id="dropdown1" ngbDropdownToggle>{{selectCourse?.name }}</a>
         <div ngbDropdownMenu aria-labelledby="dropdown1">
-          <button ngbDropdownItem *ngFor="let course of courses" (click)="clickCourse(course)">{{course?.name}}</button>
+          <button ngbDropdownItem *ngFor="let course of courses" (click)="onSelectCourse(course)">{{course?.name}}</button>
         </div>
       </div>
       <i>/</i>
       <div ngbDropdown class="d-inline-block g-link">
         <a id="dropdown2" ngbDropdownToggle>{{selectLesson?.name}}</a>
         <div ngbDropdownMenu aria-labelledby="dropdown2">
-          <button ngbDropdownItem *ngFor="let lesson of lessons" (click)="selectLesson = lesson">{{lesson?.name}}</button>
+          <button ngbDropdownItem *ngFor="let lesson of lessons" (click)="onSelectLesson(lesson)">{{lesson?.name}}</button>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
     </div>
     <div class="tips g-word">
       <button class="g-shadow-btn" (click)="selectBack()"><i class="g-border-icon fas fa-arrow-left"></i><a>  Back</a></button>
-      <button class="g-shadow-btn mr-2 ml-2" (click)="flipped = !flipped"><i class="g-border-icon">Space</i><a>  Flip</a></button>
+      <!-- <button class="g-shadow-btn mr-2 ml-2" (click)="flipped = !flipped"><i class="g-border-icon">Space</i><a>  Flip</a></button> -->
       <button class="g-shadow-btn" (click)="selectNext()"><i class=" g-border-icon fas fa-arrow-right"></i><a>  Next</a></button>
     </div>
   </div>

@@ -1,7 +1,8 @@
 # Jpp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.1.
-
+# Install
+    Please add `a,b : string`
 # Import
 ## CSV
 ## xlsx

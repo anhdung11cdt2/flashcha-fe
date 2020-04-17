@@ -1,22 +1,23 @@
-<div class="frame">
-   <div class="frame1">
-      <div class="card">
-         <div class="card-title">
-            <h6>Courses</h6>
-         </div>
-         <div class="card-body">
-            <ul *ngIf="courses" class="list-group list-group-flush course-list">
-               <li *ngFor="let item of courses"
-                  class="g-li list-group-item list-group-item-action menu-relative dimmer-hover"
-                  [ngClass]="{'g-active': selectedCourse && item.id === selectedCourse.id}"
-                  (click)="selectCourse(item)">
-                  <span>
-                     <!-- <button type="button" class="btn btn-primary">Split me</button> -->
-                     <a>{{item.name}}</a>
-                     <span class="dimmer-icon menu-absolute" (click)="deleteCourse(item)">
-                        <i class="fas fa-trash"></i>
-                     </span>
-                     <!-- <div class="btn-group menu-absolute" ngbDropdown role="group"
+<div class="container mt-2">
+   <div class="row">
+      <div class="col col-md-3 mb-2">
+         <div class="card">
+            <div class="card-title">
+               <h6>Courses</h6>
+            </div>
+            <div class="card-body">
+               <ul *ngIf="courses" class="list-group list-group-flush d-flex flex-row flex-md-column courses">
+                  <li *ngFor="let item of courses"
+                     class="g-li list-group-item list-group-item-action menu-relative dimmer-hover"
+                     [ngClass]="{'g-active': selectedCourse && item.id === selectedCourse.id}"
+                     (click)="selectCourse(item)">
+                     <span>
+                        <!-- <button type="button" class="btn btn-primary">Split me</button> -->
+                        <a>{{item.name}}</a>
+                        <span class="dimmer-icon menu-absolute" (click)="deleteCourse(item)">
+                           <i class="fas fa-trash"></i>
+                        </span>
+                        <!-- <div class="btn-group menu-absolute" ngbDropdown role="group"
                         aria-label="Button group with nested dropdown">
                         <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle>
                            <i class="fas fas-caret-down"></i>
@@ -27,87 +28,88 @@
                            </button>
                         </div>
                      </div> -->
-                  </span>
-               </li>
-            </ul>
-            <ul class="list-group">
-               <button class="btn btn-sm btn-light mb-2" (click)="expandCreate = !expandCreate">
-                  <span *ngIf="!expandCreate"><i class="fas fa-plus mr-2"></i><a>New course</a></span>
-                  <span *ngIf="expandCreate"><i class="fas fa-minus mr-2"></i><a>Cancel</a></span>
-               </button>
-               <ng-container *ngIf="expandCreate">
-                  <div class="create-course">
-                     <div class="input-group d-flex justify-content-end">
-                        <input class="form-control mb-2" type="text" [(ngModel)]="course_name"
-                           placeholder="Type course name">
-                        <div ngbDropdown class="d-inline-block mb-2">
-                           <button class="btn custom-btn" ngbDropdownToggle>
-                              <a>{{selectedLang ? selectedLang.name : 'Select language'}}</a>
-                           </button>
-                           <div ngbDropdownMenu>
-                              <button ngbDropdownItem *ngFor="let item of languages"
-                                 (click)="selectedLang = item"><a>{{item.name}}</a></button>
-                              <!-- add new language -->
-                              <button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()"><a>Add
-                                    language</a></button>
+                     </span>
+                  </li>
+               </ul>
+               <ul class="list-group">
+                  <button class="btn btn-sm btn-light mb-2" (click)="expandCreate = !expandCreate">
+                     <span *ngIf="!expandCreate"><i class="fas fa-plus mr-2"></i><a>New course</a></span>
+                     <span *ngIf="expandCreate"><i class="fas fa-minus mr-2"></i><a>Cancel</a></span>
+                  </button>
+                  <ng-container *ngIf="expandCreate">
+                     <div class="create-course">
+                        <div class="input-group d-flex justify-content-end">
+                           <input class="form-control mb-2" type="text" [(ngModel)]="course_name"
+                              placeholder="Type course name">
+                           <div ngbDropdown class="d-inline-block mb-2">
+                              <button class="btn custom-btn" ngbDropdownToggle>
+                                 <a>{{selectedLang ? selectedLang.name : 'Select language'}}</a>
+                              </button>
+                              <div ngbDropdownMenu>
+                                 <button ngbDropdownItem *ngFor="let item of languages"
+                                    (click)="selectedLang = item"><a>{{item.name}}</a></button>
+                                 <!-- add new language -->
+                                 <button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()"><a>Add
+                                       language</a></button>
+                              </div>
+                           </div>
+                           <div ngbDropdown class="d-inline-block mb-2">
+                              <button class="btn custom-btn" ngbDropdownToggle>
+                                 <a>{{selectedLevel ? selectedLevel.name : 'Select level'}}</a>
+                              </button>
+                              <div ngbDropdownMenu>
+                                 <button ngbDropdownItem *ngFor="let item of levels"
+                                    (click)="selectedLevel = item"><a>{{item.name}}</a></button>
+                              </div>
                            </div>
                         </div>
-                        <div ngbDropdown class="d-inline-block mb-2">
-                           <button class="btn custom-btn" ngbDropdownToggle>
-                              <a>{{selectedLevel ? selectedLevel.name : 'Select level'}}</a>
-                           </button>
-                           <div ngbDropdownMenu>
-                              <button ngbDropdownItem *ngFor="let item of levels"
-                                 (click)="selectedLevel = item"><a>{{item.name}}</a></button>
-                           </div>
-                        </div>
+                        <button class="btn btn-sm submit-btn w-100"
+                           [disabled]="!(course_name && selectedLevel && selectedLang)" type="button"
+                           (click)="createCourse(course_name, selectedLevel.id, selectedLang.id)"><a>Create</a></button>
                      </div>
-                     <button class="btn btn-sm submit-btn w-100" [disabled]="!(course_name && selectedLevel && selectedLang)"
-                        type="button"
-                        (click)="createCourse(course_name, selectedLevel.id, selectedLang.id)"><a>Create</a></button>
-                  </div>
-               </ng-container>
-            </ul>
+                  </ng-container>
+               </ul>
+            </div>
          </div>
       </div>
-   </div>
-   <div class="frame2">
-      <div class="card">
-         <div class="card-title">
-            <h6>Lessons</h6>
-            <!--  -->
-            <div ngbDropdown class="d-inline-block new-lesson">
-               <button class="g-icon ml-2 btn" id="dropdownForm1" [disabled]="!courses || !courses.length"
-                  ngbDropdownToggle>➕</button>
-               <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-                  <div class="px-3 py-2" style="width: 250px;">
-                     <div class="form-group">
-                        <label for="name">Lesson name</label>
-                        <input type="email" class="form-control" id="name" placeholder="Type name"
-                           [(ngModel)]="new_lesson">
+      <div class="col col-md-9 mb-2">
+         <div class="card">
+            <div class="card-title">
+               <h6>Lessons</h6>
+               <!--  -->
+               <div ngbDropdown class="d-inline-block new-lesson">
+                  <button class="g-icon ml-2 btn" id="dropdownForm1" [disabled]="!courses || !courses.length"
+                     ngbDropdownToggle>➕</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+                     <div class="px-3 py-2" style="width: 250px;">
+                        <div class="form-group">
+                           <label for="name">Lesson name</label>
+                           <input type="email" class="form-control" id="name" placeholder="Type name"
+                              [(ngModel)]="new_lesson">
+                        </div>
+                        <button type="submit" class="btn btn-sm submit-btn" (click)="createLesson(new_lesson)"
+                           [disabled]="!new_lesson">Create</button>
                      </div>
-                     <button type="submit" class="btn btn-sm submit-btn" (click)="createLesson(new_lesson)"
-                        [disabled]="!new_lesson">Create</button>
                   </div>
                </div>
+               <!--  -->
             </div>
-            <!--  -->
-         </div>
-         <div *ngIf="lessons && flashcards" class="card-body">
-            <div class="scroll-list">
-               <span *ngFor="let lesson of lessons">
-                  <app-cards-list *ngIf="lesson && flashcards" [lesson]="lesson" [flashcards]="flashcards[lesson.id]"
-                     (actions)="onActions($event)">
-                  </app-cards-list>
-               </span>
-            </div>
-            <!-- <ul *ngIf="lessons" class="list-group list-group-flush">
+            <div *ngIf="lessons && flashcards" class="card-body">
+               <div class="scroll-list">
+                  <span *ngFor="let lesson of lessons">
+                     <app-cards-list *ngIf="lesson && flashcards" [lesson]="lesson" [flashcards]="flashcards[lesson.id]"
+                        (actions)="onActions($event)">
+                     </app-cards-list>
+                  </span>
+               </div>
+               <!-- <ul *ngIf="lessons" class="list-group list-group-flush">
                     <li *ngFor="let item of lessons" class="list-group-item list-group-item-action"
                     [ngClass]="{active: selectedLesson && item.id === selectedLesson.id}"
                     (click)="selectLesson(item)">
                         {{item.name}}
                     </li>
                 </ul> -->
+            </div>
          </div>
       </div>
    </div>

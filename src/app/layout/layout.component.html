@@ -25,15 +25,15 @@
   </div>
   <div class="main">
     <!-- <div class="ad-vertical">Advertise</div> -->
-    <ngb-tabset class="main-content" #tab="ngbTabset" justify="center" type="pills">
-      <ngb-tab title="Flashcard" id="flashcard">
-        <ng-template ngbTabContent>
-          <app-flashcard [data]=flashcard.data></app-flashcard>
-        </ng-template>
-      </ngb-tab>
+    <ngb-tabset class="container" #tab="ngbTabset" justify="center" type="pills">
       <ngb-tab title="Your desk" id="desk">
         <ng-template ngbTabContent>
           <app-your-desk></app-your-desk>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Flashcard" id="flashcard">
+        <ng-template ngbTabContent>
+          <app-flashcard [data]=flashcard.data></app-flashcard>
         </ng-template>
       </ngb-tab>
       <!-- <ngb-tab title="Image regconize" id="image">
