@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SingleImportComponent } from './layouts/single-import/single-import.component';
 import { CreateLanguageComponent } from './layouts/create-language/create-language.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +52,8 @@ import { CreateLanguageComponent } from './layouts/create-language/create-langua
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    NgbModalModule
+    NgbModalModule,
+    NgxSpinnerModule
   ],
   entryComponents: [
     SingleImportComponent,

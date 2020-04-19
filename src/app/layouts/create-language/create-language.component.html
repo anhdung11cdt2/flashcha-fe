@@ -1,6 +1,7 @@
-<div class="card">
-    <div class="card-title text-center"><a>Add new languages</a></div>
+<div class="card g-text">
+    <div class="mt-2 text-center"><a>Add new languages</a></div>
     <div class="card-body">
+        <input class="w-100 my-2" type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearch()">
         <ul class="list-group">
             <li class="list-group-item list-group-item-action" *ngFor="let lang_code of objKeys(isoLangs)" 
             (click)="createLang(lang_code)">

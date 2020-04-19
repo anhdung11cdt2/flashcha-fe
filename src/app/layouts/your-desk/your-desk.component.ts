@@ -46,15 +46,25 @@ export class YourDeskComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadCourses()
+    this.loadLanguages()
+    this.loadLevels()
+  }
+  loadCourses() {
     let sub1 = this.courseSer.getAll().subscribe((res: any) => {
       this.courses = res
-      if (this.courses[0]) this.selectCourse(this.courses[0])
+      if (!this.selectedCourse && this.courses[0]) this.selectCourse(this.courses[0])
+      else if (this.selectedCourse) this.selectCourse(this.selectedCourse)
       sub1.unsubscribe()
     }, err => { this.toast.err(err)})
+  }
+  loadLanguages() {
     let sub2 = this.languageSer.getAll().subscribe((res: any) => {
       this.languages = res
       sub2.unsubscribe()
     })
+  }
+  loadLevels() {
     let sub3 = this.levelSer.getAll().subscribe((res: any) => {
       this.levels = res
       sub3.unsubscribe()
@@ -92,6 +102,7 @@ export class YourDeskComponent implements OnInit {
     }, err => this.toast.err(err))
   }
   openCreateLanguageModal() {
+    // write not exist create
     const ref = this.modal.open(CreateLanguageComponent, { size: 'sm', backdrop: true })
     ref.result.then(res => {
       if (res.id) {
@@ -107,6 +118,8 @@ export class YourDeskComponent implements OnInit {
     }, err => { this.toast.err(err)})
   }
   onActions(e: any) {
+    console.log(e);
     if (e && e.action === 'delete' && e.id) this.lessons = this.lessons.filter(lesson => lesson.id !== e.id)
+    if (e && e.action === 'closeImport') this.loadLanguages()
   }
 }

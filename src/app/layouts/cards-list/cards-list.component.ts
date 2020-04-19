@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SingleImportComponent } from '../single-import/single-import.component';
 import { LessonsService } from 'src/app/_services/lessons.service';
 import { ToastService } from 'src/app/_services/toast.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-cards-list',
   templateUrl: './cards-list.component.html',
@@ -17,10 +18,12 @@ export class CardsListComponent implements OnInit {
   archived = []
   inArchive = []
   selectWord: Flashcard
+  deleteLessonId: string = null
   constructor(
     public modalSer: NgbModal,
     private lessonSer: LessonsService,
-    private toast: ToastService
+    private toast: ToastService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -31,11 +34,16 @@ export class CardsListComponent implements OnInit {
     modal.result.then(res => {
       if (!this.flashcards) this.flashcards = []
       if (res && res.flashcards) res.flashcards.map(f => {Object.assign(f, {isNew: true}); this.flashcards.push(f)})
-    }, reject => {})
+      this.actions.emit({action: 'closeImport'})
+    }, reject => {
+    })
   }
   deleteLesson(id: string) {
+    this.deleteLessonId = id
+    this.spinner.show('detele_lesson_'+id)
     let sub = this.lessonSer.deleteLesson(id).subscribe((res: Lesson[]) => {
       if (res && !res.find(l => l.id === id)) this.actions.emit({action: 'delete', id: id})
+      this.spinner.hide('detele_lesson_'+id)
       sub.unsubscribe()
     }, err => this.toast.err(err))
   }

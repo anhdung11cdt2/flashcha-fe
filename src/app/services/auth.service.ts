@@ -32,6 +32,8 @@ export class AuthService {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
       res => {
         if (res.user) {
+          console.log(res.user);
+          
           this.createUser(res.user)
         }
       }, rejected => {

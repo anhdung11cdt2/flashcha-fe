@@ -8,7 +8,7 @@
             <div class="card-body">
                <ul *ngIf="courses" class="list-group list-group-flush d-flex flex-row flex-md-column courses">
                   <li *ngFor="let item of courses"
-                     class="g-li list-group-item list-group-item-action menu-relative dimmer-hover"
+                     class="g-li list-group-item list-group-item-action menu-relative dimmer-hover course-item"
                      [ngClass]="{'g-active': selectedCourse && item.id === selectedCourse.id}"
                      (click)="selectCourse(item)">
                      <span>
@@ -94,7 +94,7 @@
                </div>
                <!--  -->
             </div>
-            <div *ngIf="lessons && flashcards" class="card-body">
+            <div *ngIf="lessons && lessons.length && flashcards; else notFound" class="card-body">
                <div class="scroll-list">
                   <span *ngFor="let lesson of lessons">
                      <app-cards-list *ngIf="lesson && flashcards" [lesson]="lesson" [flashcards]="flashcards[lesson.id]"
@@ -114,3 +114,9 @@
       </div>
    </div>
 </div>
+<ng-template #notFound>
+   <div class="notFound-container">
+      <img style="width: 64px; opacity: 0.6;" src="../../../assets/cat-waiting.png" alt="Not found">
+      <a>Meow...waiting for your first lesson!</a>
+   </div>
+</ng-template>

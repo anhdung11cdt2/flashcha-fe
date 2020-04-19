@@ -13,3 +13,12 @@ td:not(:first-child) {
   position: absolute;
   right: 5px;
 }
+.scroll-area {
+  position: relative;
+  max-height: 80vh;
+  overflow: auto;
+  &.loading {
+    overflow: hidden;
+    border-radius: 10px;
+  }
+}

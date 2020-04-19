@@ -8,12 +8,13 @@ import * as canvasDatagrid from 'canvas-datagrid';
 import { FlashcardsService } from 'src/app/_services/flashcards.service';
 import { CardTranslatesService } from 'src/app/_services/card-translates.service';
 import { ToastService } from 'src/app/_services/toast.service';
-import { switchMap } from "rxjs/operators";
+import { switchMap, map } from "rxjs/operators";
 import { of } from 'rxjs';
 import { LanguagesService } from 'src/app/_services/languages.service';
 import { Language } from 'src/app/_types/language';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbDropdown, NgbDropdownMenu, NgbDropdownItem, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CreateLanguageComponent } from '../create-language/create-language.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-single-import',
   templateUrl: './single-import.component.html',
@@ -41,7 +42,8 @@ export class SingleImportComponent implements OnInit {
     private langSer: LanguagesService,
     private toast: ToastService,
     private modal: NgbModal,
-    public activeModal: NgbActiveModal
+    private spinner: NgxSpinnerService,
+    public activeModal: NgbActiveModal,
   ) { }
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class SingleImportComponent implements OnInit {
       this.langs = res
     }, err => this.toast.err(err))
   }
+  checkSpinnerStt(key: string) { return this.spinner.getSpinner('import').pipe(map((res: any) => { return res.show })) }
   onFileChange(evt: any) {
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
@@ -103,7 +106,7 @@ export class SingleImportComponent implements OnInit {
     if (cards.length !== card_trs.length) { this.toast.warning('Some word or meaning is missing', 'Data length Error'); return }
     if (!cards.length) { this.toast.warning('Words is empty!', null); return }
     if (!card_trs.length) { this.toast.warning('Meanings is empty', null); return }
-
+    this.spinner.show('import')
     // ------ Start Import --------
     let body = { lesson_id: this.lesson.id, flash_cards: cards }
     this.flashcardSer.createArrayFlashCards(body).pipe(switchMap((res: any) => {
@@ -124,6 +127,7 @@ export class SingleImportComponent implements OnInit {
     })).subscribe((res: CardTranslation[]) => {
       if (res && res.length) {
         this.toast.success('Imported ' + res.length + ' cards')
+        this.spinner.hide('import')
         this.activeModal.close({ flashcards: this.new_flashcards })
       }
     }, err => this.toast.err(err))
@@ -141,6 +145,7 @@ export class SingleImportComponent implements OnInit {
     ref.result.then(res => {
       if (res.id) {
         this.langs.push(res)
+        this.selectedLang = res
       }
     }, reject => { })
   }
