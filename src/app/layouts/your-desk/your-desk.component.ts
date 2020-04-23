@@ -74,6 +74,7 @@ export class YourDeskComponent implements OnInit {
     this.selectedCourse = course
     let sub = this.lessonSer.getData(course.id).pipe(rxo.switchMap((res: any) => {
       this.lessons = res
+      console.log(res);
       let lesson_ids = this.lessons.map(e => e.id)
       return this.flashcardSer.getIndex(lesson_ids)
     })).subscribe((res: any) => {

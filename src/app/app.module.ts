@@ -22,7 +22,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SingleImportComponent } from './layouts/single-import/single-import.component';
 import { CreateLanguageComponent } from './layouts/create-language/create-language.component';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { FlashcardsService } from './_services/flashcards.service';
+import { LanguagesService } from './_services/languages.service';
+import { CoursesService } from './_services/courses.service';
+import { AuthService } from './services/auth.service';
+import { LessonsService } from './_services/lessons.service';
+import { LevelsService } from './_services/levels.service';
+import { ToastService } from './_services/toast.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +66,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     SingleImportComponent,
     CreateLanguageComponent
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, FlashcardsService, LanguagesService, CoursesService, AuthService, LessonsService, LevelsService, ToastService, NgxSpinnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
