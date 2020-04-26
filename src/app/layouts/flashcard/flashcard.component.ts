@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input, OnDestroy } from '@angular/core';
 import { Kotoba } from 'src/app/types/kotoba';
-import { FlashcardLearnService } from 'src/app/services/flashcardLearn.service';
+import { FlashcardLearnService } from 'src/app/_services/flashcardLearn.service';
 import { Subscription, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { DragulaService } from 'ng2-dragula';
@@ -90,7 +90,7 @@ export class FlashcardComponent implements OnInit, OnDestroy {
     this.lessonSer.getData(this.selectCourse.id).subscribe((lessons: Lesson[]) => {
       this.lessons = lessons
       this.selectLesson = this.lessons[0]
-      this.loadFlashCards(this.selectLesson.id)
+      if (this.selectLesson) this.loadFlashCards(this.selectLesson.id)
     }, err => this.toast.err(err, 'Select Course'))
   }
   onSelectLesson(lesson: Lesson) {
@@ -131,13 +131,14 @@ export class FlashcardComponent implements OnInit, OnDestroy {
   selectNext() {
     let i = this.findI()
     // if (this.inArchive[i + 1]) this.selectWord = this.inArchive[i + 1]
-    if (this.inArchiveCards[i + 1]) this.selectFlashcard = this.inArchiveCards[i + 1]
+    if (i >= 0 && this.inArchiveCards[i + 1]) this.selectFlashcard = this.inArchiveCards[i + 1]
   }
   selectBack() {
     let i = this.findI()
-    if (this.inArchiveCards[i - 1]) this.selectFlashcard = this.inArchiveCards[i - 1]
+    if (i >= 0 && this.inArchiveCards[i - 1]) this.selectFlashcard = this.inArchiveCards[i - 1]
   }
   findI(selectFlashcard?: Flashcard) {
+    if(!this.inArchiveCards || !this.inArchiveCards.length) return -1
     const card = selectFlashcard || this.selectFlashcard 
     return this.inArchiveCards.findIndex(e => card && e.id == card.id)
   }

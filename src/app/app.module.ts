@@ -26,7 +26,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { FlashcardsService } from './_services/flashcards.service';
 import { LanguagesService } from './_services/languages.service';
 import { CoursesService } from './_services/courses.service';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './_services/auth.service';
 import { LessonsService } from './_services/lessons.service';
 import { LevelsService } from './_services/levels.service';
 import { ToastService } from './_services/toast.service';
