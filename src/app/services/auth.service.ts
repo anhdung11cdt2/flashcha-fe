@@ -44,6 +44,28 @@ export class AuthService {
   logout() {
     return this.afAuth.auth.signOut();
   }
+  // Sign up with email/password
+  private signUp(email, password) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        window.alert("You have been successfully registered!");
+        console.log(result.user)
+      }).catch((error) => {
+        window.alert(error.message)
+      })
+  }
+
+  // Sign in with email/password
+  private signIn(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        //  this.router.navigate(['<!-- enter your route name here -->']);
+      }).catch((error) => {
+        window.alert(error.message)
+      })
+  }
+
   private createUser(user: firebase.User) {
     const userData: User = {
       displayName: user.displayName,
