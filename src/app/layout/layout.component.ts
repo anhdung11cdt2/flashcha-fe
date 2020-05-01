@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from '../services/auth.service';
-import { FlashcardLearnService } from '../services/flashcardLearn.service';
+import { AuthService } from '../_services/auth.service';
+import { FlashcardLearnService } from '../_services/flashcardLearn.service';
 
 @Component({
   selector: 'app-layout',

@@ -39,7 +39,7 @@
       </div>
       <i>/</i>
       <div ngbDropdown class="d-inline-block">
-        <button id="dropdown2" class="btn" ngbDropdownToggle [disabled]="!lessons.length">{{selectLesson?.name}}</button>
+        <button id="dropdown2" class="btn" ngbDropdownToggle [disabled]="!lessons || !lessons.length">{{selectLesson?.name}}</button>
         <div ngbDropdownMenu aria-labelledby="dropdown2">
           <button ngbDropdownItem *ngFor="let lesson of lessons" (click)="onSelectLesson(lesson)">{{lesson?.name}}</button>
         </div>
