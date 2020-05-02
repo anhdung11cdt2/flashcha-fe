@@ -7,8 +7,8 @@ import { DatePipe } from '@angular/common';
 export interface User {
   displayName: string,
   email: string,
-  lastSignIn: string,
-  createdAt: string,
+  lastSignInTime: string,
+  creationTime: string,
   photoURL: string,
   uid: string
 }
@@ -25,7 +25,11 @@ export class AuthService {
   ) {
     this.afAuth.auth.onAuthStateChanged( user => {
       this.user = user
-      this.afAuth.idToken.subscribe(t => this.token = t)
+      this.afAuth.idToken.subscribe(t => {
+        this.token = t
+        console.log(t);
+        
+      })
     })
   }
   login() {
@@ -70,8 +74,8 @@ export class AuthService {
     const userData: User = {
       displayName: user.displayName,
       email: user.email,
-      lastSignIn: this.timeConvert(user.metadata.b),
-      createdAt: this.timeConvert(user.metadata.a),
+      lastSignInTime: this.timeConvert(user.metadata.lastSignInTime),
+      creationTime: this.timeConvert(user.metadata.creationTime),
       photoURL: user.photoURL,
       uid: user.uid
     }
