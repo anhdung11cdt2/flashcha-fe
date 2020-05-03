@@ -13,6 +13,8 @@ export class ToastService {
     this.toast.success('Successful')
   }
   err(err: any, title?: string) {
+    console.log(err);
+    
     if (err && err.status) {
       this.toast.error(err.status + ' ' + err.statusText); console.log(err);
     // } else if (err && Object.keys(err).length) {

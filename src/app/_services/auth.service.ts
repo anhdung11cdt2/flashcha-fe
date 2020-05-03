@@ -7,8 +7,8 @@ import { DatePipe } from '@angular/common';
 export interface User {
   displayName: string,
   email: string,
-  lastSignIn: string,
-  createdAt: string,
+  lastSignInTime: string,
+  creationTime: string,
   photoURL: string,
   uid: string
 }
@@ -25,8 +25,15 @@ export class AuthService {
   ) {
     this.afAuth.auth.onAuthStateChanged( user => {
       this.user = user
-      this.afAuth.idToken.subscribe(t => this.token = t)
+      this.afAuth.idToken.subscribe(t => {
+        this.token = t
+        console.log(t);
+        
+      })
     })
+  }
+  getAuthToken() {
+    return this.afAuth.idToken
   }
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
@@ -44,12 +51,34 @@ export class AuthService {
   logout() {
     return this.afAuth.auth.signOut();
   }
+  // Sign up with email/password
+  private signUp(email, password) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        window.alert("You have been successfully registered!");
+        console.log(result.user)
+      }).catch((error) => {
+        window.alert(error.message)
+      })
+  }
+
+  // Sign in with email/password
+  private signIn(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        //  this.router.navigate(['<!-- enter your route name here -->']);
+      }).catch((error) => {
+        window.alert(error.message)
+      })
+  }
+
   private createUser(user: firebase.User) {
     const userData: User = {
       displayName: user.displayName,
       email: user.email,
-      lastSignIn: this.timeConvert(user.metadata.b),
-      createdAt: this.timeConvert(user.metadata.a),
+      lastSignInTime: this.timeConvert(user.metadata.lastSignInTime),
+      creationTime: this.timeConvert(user.metadata.creationTime),
       photoURL: user.photoURL,
       uid: user.uid
     }
