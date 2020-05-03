@@ -32,6 +32,9 @@ export class AuthService {
       })
     })
   }
+  getAuthToken() {
+    return this.afAuth.idToken
+  }
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
       res => {

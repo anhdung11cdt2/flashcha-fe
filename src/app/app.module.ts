@@ -30,6 +30,7 @@ import { AuthService } from './_services/auth.service';
 import { LessonsService } from './_services/lessons.service';
 import { LevelsService } from './_services/levels.service';
 import { ToastService } from './_services/toast.service';
+import { httpInterceptorProviders } from './_interceptors';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,17 @@ import { ToastService } from './_services/toast.service';
     SingleImportComponent,
     CreateLanguageComponent
   ],
-  providers: [DatePipe, FlashcardsService, LanguagesService, CoursesService, AuthService, LessonsService, LevelsService, ToastService, NgxSpinnerService],
+  providers: [
+    DatePipe, 
+    FlashcardsService, 
+    LanguagesService, 
+    CoursesService, 
+    AuthService, 
+    LessonsService, 
+    LevelsService, 
+    ToastService, 
+    NgxSpinnerService,
+    httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
