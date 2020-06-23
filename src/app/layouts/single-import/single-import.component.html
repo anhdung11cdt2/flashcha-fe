@@ -21,17 +21,16 @@
 					<th *ngFor="let k of objectKeys(headersIndex)" class="{{k}}">
 						<div class="d-flex flex-row">
 							<a class="mr-2">{{k || ''}}</a>
-							<div *ngIf="k === 'meaning' && !!langs" ngbDropdown #languageDrop="ngbDropdown">
+							<!-- <div *ngIf="k === 'meaning' && !!langs" ngbDropdown #languageDrop="ngbDropdown">
 								<button class="btn btn-sm" id="dropdown1"
 									ngbDropdownToggle>{{selectedLang ? selectedLang.name  : 'Choose language'}}</button>
 								<div ngbDropdownMenu aria-labelledby="dropdown1">
 									<button ngbDropdownItem *ngFor="let lang of langs"
 										(click)="selectedLang = lang">{{lang.name}}</button>
-									<!-- Add other languages -->
 									<button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()">Add
 										language</button>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</th>
 				</thead>

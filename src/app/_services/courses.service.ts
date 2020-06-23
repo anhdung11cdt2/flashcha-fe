@@ -11,8 +11,8 @@ export class CoursesService {
   getAll() {
     return this.http.get(this.url)
   }
-  createNew(name: string, level_id: string, language_id: string) {
-    return this.http.post(this.url, {name, level_id, language_id})
+  createNew(name: string, level_id: string, language_id: string, translate_language_id: string) {
+    return this.http.post(this.url, {name, level_id, language_id, translate_language_id})
   }
   deleteCourse(id: string) {
     return this.http.delete(this.url + '/' + id)

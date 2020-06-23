@@ -43,14 +43,24 @@
                               placeholder="Type course name">
                            <div ngbDropdown class="d-inline-block mb-2">
                               <button class="btn custom-btn" ngbDropdownToggle>
-                                 <a>{{selectedLang ? selectedLang.name : 'Select language'}}</a>
+                                 <a>{{selectedLang ? selectedLang.name : 'Select course language'}}</a>
                               </button>
                               <div ngbDropdownMenu>
                                  <button ngbDropdownItem *ngFor="let item of languages"
                                     (click)="selectedLang = item"><a>{{item.name}}</a></button>
                                  <!-- add new language -->
-                                 <button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()"><a>Add
-                                       language</a></button>
+                                 <button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()"><a>Add course language</a></button>
+                              </div>
+                           </div>
+                           <div ngbDropdown class="d-inline-block mb-2">
+                              <button class="btn custom-btn" ngbDropdownToggle>
+                                 <a>{{selectedTranslateLang ? selectedTranslateLang.name : 'Select translate language'}}</a>
+                              </button>
+                              <div ngbDropdownMenu>
+                                 <button ngbDropdownItem *ngFor="let item of languages"
+                                    (click)="selectedTranslateLang = item"><a>{{item.name}}</a></button>
+                                 <!-- add new language -->
+                                 <button ngbDropdownItem class="g-grey-text" (click)="openCreateLanguageModal()"><a>Add translate language</a></button>
                               </div>
                            </div>
                            <div ngbDropdown class="d-inline-block mb-2">
@@ -65,7 +75,7 @@
                         </div>
                         <button class="btn btn-sm submit-btn w-100"
                            [disabled]="!(course_name && selectedLevel && selectedLang)" type="button"
-                           (click)="createCourse(course_name, selectedLevel.id, selectedLang.id)"><a>Create</a></button>
+                           (click)="createCourse(course_name, selectedLevel.id, selectedLang.id, selectedTranslateLang.id)"><a>Create</a></button>
                      </div>
                   </ng-container>
                </ul>
@@ -97,7 +107,7 @@
             <div *ngIf="lessons && lessons.length && flashcards; else notFound" class="card-body">
                <div class="scroll-list">
                   <span *ngFor="let lesson of lessons">
-                     <app-cards-list *ngIf="lesson && flashcards" [lesson]="lesson" [flashcards]="flashcards[lesson.id]"
+                     <app-cards-list *ngIf="lesson && flashcards" [course]="selectedCourse" [lesson]="lesson" [flashcards]="flashcards[lesson.id]"
                         (actions)="onActions($event)">
                      </app-cards-list>
                   </span>

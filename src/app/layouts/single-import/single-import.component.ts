@@ -4,7 +4,6 @@ import { Flashcard } from 'src/app/_types/flashcard';
 import { CardTranslation } from 'src/app/_types/card-translation';
 import { Lesson } from 'src/app/_types/lesson';
 type AOA = any[][];
-import * as canvasDatagrid from 'canvas-datagrid';
 import { FlashcardsService } from 'src/app/_services/flashcards.service';
 import { CardTranslatesService } from 'src/app/_services/card-translates.service';
 import { ToastService } from 'src/app/_services/toast.service';
@@ -12,9 +11,9 @@ import { switchMap, map } from "rxjs/operators";
 import { of } from 'rxjs';
 import { LanguagesService } from 'src/app/_services/languages.service';
 import { Language } from 'src/app/_types/language';
-import { NgbModal, NgbActiveModal, NgbDropdown, NgbDropdownMenu, NgbDropdownItem, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { CreateLanguageComponent } from '../create-language/create-language.component';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Course } from 'src/app/_types/course';
 @Component({
   selector: 'app-single-import',
   templateUrl: './single-import.component.html',
@@ -22,6 +21,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SingleImportComponent implements OnInit {
   lesson: Lesson
+  course: Course
   data: AOA
   allowedData: any[]
   flashcard: Flashcard[] = []
@@ -102,7 +102,7 @@ export class SingleImportComponent implements OnInit {
       this.toast.warning('Card number ' + this.failedData.map(d => { return parseInt(d) + 1 }).toString() + ' is invalid!', null)
       return
     }
-    if (!this.selectedLang) { this.toast.warning('Please select language of meaning', null); return }
+    // if (!this.selectedLang) { this.toast.warning('Please select language of meaning', null); return }
     if (cards.length !== card_trs.length) { this.toast.warning('Some word or meaning is missing', 'Data length Error'); return }
     if (!cards.length) { this.toast.warning('Words is empty!', null); return }
     if (!card_trs.length) { this.toast.warning('Meanings is empty', null); return }
@@ -111,16 +111,13 @@ export class SingleImportComponent implements OnInit {
     let body = { lesson_id: this.lesson.id, flash_cards: cards }
     this.flashcardSer.createArrayFlashCards(body).pipe(switchMap((res: any) => {
       this.new_flashcards = res[this.lesson.id]
-      if (this.new_flashcards && this.new_flashcards.length) {
+      if (this.new_flashcards && this.new_flashcards.length && this.new_flashcards.length === card_trs.length) {
         let arr_cardTrs = []
-        this.new_flashcards.map(new_card => {
-          const word_i = cards.findIndex(card => card.word === new_card['word'])
-          if (word_i !== -1) {
-            arr_cardTrs.push(Object.assign(card_trs[word_i], { flash_card_id: new_card.id }))
-          }
+        this.new_flashcards.map((new_card, i) => {
+            arr_cardTrs.push(Object.assign(card_trs[i], { flash_card_id: new_card.id }))
         })
         if (arr_cardTrs.length) {
-          const body = { language_id: this.selectedLang.id, card_translates: arr_cardTrs }
+          const body = { language_id: this.course.translate_language_id, card_translates: arr_cardTrs }
           return this.cardTransSer.createArrayCardTrs(body)
         } else { this.toast.err('Meaning is empty'); return of(false) }
       } else { this.toast.err('Empty results'); return of(false) }
@@ -139,17 +136,5 @@ export class SingleImportComponent implements OnInit {
       if (Object.keys(item).length === 0) { this.failedData.push(row_i) }
       return item
     })
-  }
-  openCreateLanguageModal() {
-    const ref = this.modal.open(CreateLanguageComponent, { size: 'sm', backdrop: true })
-    ref.result.then(res => {
-      if (res.id) {
-        this.langs.push(res)
-        this.selectedLang = res
-      }
-    }, reject => { })
-  }
-  findFailedCards(cards, card_trs) {
-
   }
 }

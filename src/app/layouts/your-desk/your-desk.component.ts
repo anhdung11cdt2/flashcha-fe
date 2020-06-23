@@ -26,6 +26,7 @@ export class YourDeskComponent implements OnInit {
   flashcards: [Flashcard[]]
   
   selectedLang: Language
+  selectedTranslateLang: Language
   course_name: string
   selectedLevel: Level
 
@@ -86,9 +87,9 @@ export class YourDeskComponent implements OnInit {
     this.selectedLesson = lesson
     // this.flashcard.getData(lesson.id, 1, 50)
   }
-  createCourse(name: string, level_id: string, language_id: string) {
-    if (name && level_id && language_id) {
-      let sub = this.courseSer.createNew(name, level_id, language_id).subscribe((res: any) => {
+  createCourse(name: string, level_id: string, language_id: string, translate_language_id: string) {
+    if (name && level_id && language_id && translate_language_id) {
+      let sub = this.courseSer.createNew(name, level_id, language_id, translate_language_id).subscribe((res: any) => {
         this.expandCreate = false
         if (res && res.length) this.courses = res
         sub.unsubscribe()
