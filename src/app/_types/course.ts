@@ -4,5 +4,6 @@ export interface Course {
     updated_at: string,
     id: string,
     level_id: string,
-    language_id: string
+    language_id: string,
+    translate_language_id: string,
 }

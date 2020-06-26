@@ -48,8 +48,8 @@ export class AuthService {
     const userData: User = {
       displayName: user.displayName,
       email: user.email,
-      lastSignIn: this.timeConvert(user.metadata.b),
-      createdAt: this.timeConvert(user.metadata.a),
+      lastSignIn: this.timeConvert(user.metadata['b']),
+      createdAt: this.timeConvert(user.metadata['a']),
       photoURL: user.photoURL,
       uid: user.uid
     }
