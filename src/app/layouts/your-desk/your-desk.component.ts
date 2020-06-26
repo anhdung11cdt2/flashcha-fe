@@ -103,12 +103,13 @@ export class YourDeskComponent implements OnInit {
       sub.unsubscribe()
     }, err => this.toast.err(err))
   }
-  openCreateLanguageModal() {
+  openCreateLanguageModal(lang_type: 'course_language' | 'translate_language') {
     // write not exist create
     const ref = this.modal.open(CreateLanguageComponent, { size: 'sm', backdrop: true })
     ref.result.then(res => {
       if (res.id) {
         this.languages.push(res)
+        lang_type === 'course_language' ? this.selectedLang = res : this.selectedTranslateLang = res
       }
     }, reject => { })
   }
