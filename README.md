@@ -12,11 +12,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     ## MULTI SHEET -IMPORT Courses + Lessons <-- Sheet_name: course, Lessons: paging + per
     ## SINGLE SHEET-IMPORT Lesson <-- First sheet, all items
 # Server routes:
-* flashcha: http://68.183.182.232
-* http://68.183.182.232/languages,
-* http://68.183.182.232/levels,
-* http://68.183.182.232/courses,
-* http://68.183.182.232/lessons,
-    - http://68.183.182.232/lessons?course_id=dea9e26a-d2f0-4314-9f40-61792e7dbb5a,
-* POST http://68.183.182.232/flash_cards,
-* http://68.183.182.232/card_translations?
+* flashcha server
+* /languages
+* /levels
+* /courses
+* /lessons
+    params: { course_id: string }
+* POST /flash_cards
+* /card_translations
